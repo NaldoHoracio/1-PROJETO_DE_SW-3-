@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cac5f6cb-3878-491a-bf18-5f32fcc0141d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Dialog1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Dialog1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prj00.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prj00/GradeBook.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prj00/GradeBookTeste.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GradeBook.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GradeBookTeste.java" beforeDir="false" />
+    <list default="true" id="c4dabf08-c8e8-4b6d-8546-911fd3c7b284" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/copyright/Demo.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MaximumFindTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MaximumFindTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,7 +14,26 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/MaximumFindTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MaximumFinder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="640">
+              <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -37,8 +48,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/GradeBook.java" />
-        <option value="$PROJECT_DIR$/src/GradeBookTeste.java" />
+        <option value="$PROJECT_DIR$/src/MaxiumFinder.java" />
+        <option value="$PROJECT_DIR$/src/MaximumFinder.java" />
+        <option value="$PROJECT_DIR$/src/MaximumFindTest.java" />
       </list>
     </option>
   </component>
@@ -54,18 +66,33 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="MaximumFinderTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MaximumFinderTest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MaximumFinderTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MaximumFinderTest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548681798365" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../GradeBookTest" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548856971759" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -80,16 +107,16 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="GradeBookTeste" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="GradeBookTeste" />
-      <module name="Prj00" />
+    <configuration name="MaximumFindTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MaximumFindTest" />
+      <module name="MaximumFinderTest" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GradeBookTeste" />
+        <item itemvalue="Application.MaximumFindTest" />
       </list>
     </recent_temporary>
   </component>
@@ -98,26 +125,23 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="cac5f6cb-3878-491a-bf18-5f32fcc0141d" name="Default Changelist" comment="" />
-      <created>1548376100113</created>
+      <changelist id="c4dabf08-c8e8-4b6d-8546-911fd3c7b284" name="Default Changelist" comment="" />
+      <created>1548855360152</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1548376100113</updated>
-      <workItem from="1548376104504" duration="3172000" />
-      <workItem from="1548511526764" duration="666000" />
-      <workItem from="1548671706540" duration="6164000" />
-      <workItem from="1548699903470" duration="629000" />
-      <workItem from="1548847992460" duration="684000" />
+      <updated>1548855360152</updated>
+      <workItem from="1548855365618" duration="2002000" />
+      <workItem from="1548874937437" duration="3843000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11315000" />
+    <option name="totallyTimeSpent" value="5845000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24962178" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2557252" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -127,7 +151,7 @@
       <window_info id="Learn" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32850242" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32850242" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -153,22 +177,47 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/GradeBook.java">
+    <entry file="file://$PROJECT_DIR$/src/MaxiumFinder.java" />
+    <entry file="file://$PROJECT_DIR$/src/MaximumFinder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="37" column="73" selection-start-line="37" selection-start-column="73" selection-end-line="37" selection-end-column="73" />
+        <state relative-caret-position="640">
+          <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GradeBookTeste.java">
+    <entry file="file://$PROJECT_DIR$/src/MaximumFindTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="101" selection-start-line="17" selection-start-column="101" selection-end-line="17" selection-end-column="101" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="220">
+          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
         </state>
       </provider>
     </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="Copyright.UI">
+        <settings>
+          <last-edited>Demo</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

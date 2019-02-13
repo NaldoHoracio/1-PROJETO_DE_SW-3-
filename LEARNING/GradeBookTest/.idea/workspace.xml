@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cac5f6cb-3878-491a-bf18-5f32fcc0141d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Dialog1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Dialog1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Prj00.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prj00/GradeBook.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prj00/GradeBookTeste.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GradeBook.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GradeBookTeste.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MaximumFinderTest/.idea/copyright/Demo.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MaximumFinderTest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MaximumFinderTest/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MaximumFinderTest/src/MaximumFindTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MaximumFinderTest/src/MaximumFindTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,7 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -54,16 +47,31 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="ProjectPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="GradeBookTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GradeBookTest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GradeBookTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GradeBookTest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548681798365" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../GradeBookTest" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -107,17 +115,22 @@
       <workItem from="1548511526764" duration="666000" />
       <workItem from="1548671706540" duration="6164000" />
       <workItem from="1548699903470" duration="629000" />
-      <workItem from="1548847992460" duration="684000" />
+      <workItem from="1548847992460" duration="607000" />
+      <workItem from="1548849076123" duration="1088000" />
+      <workItem from="1548894536801" duration="601000" />
+      <workItem from="1549068918589" duration="5000" />
+      <workItem from="1549890856474" duration="17000" />
+      <workItem from="1550053637102" duration="636000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11315000" />
+    <option name="totallyTimeSpent" value="13585000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24962178" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2685325" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
