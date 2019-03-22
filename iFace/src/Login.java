@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Login
 {
-	public int checkLogin(ArrayList<Register> accounts)
+	public int checkLogin(ArrayList<iFace.Register> accounts)
 	{
 		String username, password; boolean check = false; int index = 0;
 		Scanner input = new Scanner(System.in); String okay;
@@ -39,7 +39,7 @@ public class Login
 			return index;
 	}
 	
-	public void menuLogin(ArrayList<Register> accounts, int index, ArrayList<Register> backups)
+	public void menuLogin(ArrayList<iFace.Register> accounts, int index, ArrayList<iFace.Register> backups)
 	{
 		System.out.printf("\n");
 		boolean active = true; int user_choise;
@@ -57,12 +57,12 @@ public class Login
 				switch(decision)
 				{
 					case 1:
-						Friends new_friend = new Friends();
+						iFace.Friends new_friend = new iFace.Friends();
 						new_friend.name = accounts.get(index).new_profile.invites.get(i).getName();
 						new_friend.username = accounts.get(index).new_profile.invites.get(i).getUsername();
 						accounts.get(index).new_profile.friends.add(new_friend);
 						
-						Friends new_friend2 = new Friends();
+						iFace.Friends new_friend2 = new iFace.Friends();
 						Search search = new Search();
 						index2 = search.searchIndex(accounts, accounts.get(index).new_profile.invites.get(i).getUsername());
 						new_friend2.name = accounts.get(index).new_profile.getName();
@@ -485,7 +485,7 @@ public class Login
 										for(int k = 0; k < accounts.get(i).new_profile.communities.get(j).invites.size(); k++)
 										{
 											if(accounts.get(index).username.intern() == accounts.get(i).new_profile.communities.get(j).invites.get(k).username.intern())
-												accounts.get(i).new_profile.communities.get(j).invites.remove(k);							
+												accounts.get(i).new_profile.communities.get(j).invites.remove(k);
 										}
 										for(int k = 0; k < accounts.get(i).new_profile.communities.get(j).members.size(); k++)
 										{
