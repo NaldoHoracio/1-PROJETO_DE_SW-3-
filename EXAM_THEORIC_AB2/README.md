@@ -1,4 +1,7 @@
 # Prova 2
+Repositório contém o diagrama com as classes do projeto antigo e não refatorado chamado Folha de Pagamento, conforme exigências [aqui](https://bit.ly/2FMUV9a). São sugeridas as aplicações de dois padrões de projeto para o problema.
+
+
 No projeto antigo são apenas 3 grandes classes, conforme modelo do dia.
 
 Padrão de projeto 1 - Template Method
@@ -9,6 +12,7 @@ Funcionalidades: pagar de acordo com o tipo de pagamento escolhido. Os três mé
 Vantagens: é possível adicionar mais formas de pagamento, caso sejam necessárias. O programa fica extensível.
 
 Padrão de projeto 2 - Interpreter.
+
 Classe aplicável: Empregado.
 Objetivo: criar uma classe de acordo com o tipo de empregado cadastrado (Horista, Assalariado e Comissionado).
 Funcionalidades: através de uma interface, é escolhido o tipo de empregado cadastrado, cujos dados são tratados em sua respectiva classe.
