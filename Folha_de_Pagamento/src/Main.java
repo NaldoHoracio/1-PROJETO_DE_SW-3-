@@ -23,7 +23,7 @@ class Employee
     public double commissioned;// Comissão
     public double salaryEmployee;// Salário total do empregado
 
-    public int isSyndicalist;// Valida se o empregado faz parte do sindicato
+    public int isSyndicalist;// Valida se o empregado faz parte do sindicato ( 1 - Sim | 0 - Não)
     public int getIdEmployeeSyndicalist;// Número de identificação do empregado no sindicato
     public double unionFee;// Taxa do sindicato
     public double outherFees;// Outras taxas de quem pertence ao sindicato
@@ -34,6 +34,22 @@ class Employee
     public int weeklyDay;// Dia da semana de pagamento (1 - SEG | 2 - TER | 3 - QUA | 4 - QUI | 5 - SEX
     public int dataDay;// Dia do pagamento do mês
 
+}
+
+class AgendaPayroll
+{
+    public int[] weeklyPayment = new int[5];// Agenda semanal
+    public int[] biWeeklyPayment = new int[5];// Agenda bi-semanal
+    public int[] monthlyPayment = new int[27];// Agenda mensal
+}
+
+class NumberEmployee
+{
+    final int numberEmployee;
+    NumberEmployee(int number)
+    {
+        this.numberEmployee = number;
+    }
 }
 
 public class Main
@@ -62,21 +78,21 @@ public class Main
         System.out.println("10 - Create news payment agendas.");
     }
 
-    public static boolean isSindycalistEmployee(int is)
+    public static int isSindycalistEmployee(int is)
     {
-        return (is == 1) ? true:false;
+        return (is == 1) ? 1:0;
     }
 
     // ADICIONANDO EMPREGADO
-    public static void(Employee[] employee, Scanner input)
+    public static void addEmployee(Employee[] employee, Scanner input)
     {
         int currentIndex = 0;
-        private final int numberEmployee = 100;
+        NumberEmployee number = new NumberEmployee(100);
         // Soma 1 ao indice de empregado caso ele seja diferente de null
         while(employee[currentIndex] != null) currentIndex++;
 
         employee[currentIndex] = new Employee();
-        employee[numberEmployee] = null;
+        employee[number.numberEmployee] = null;
 
         System.out.printf("Please, enter to employee name:\n");
         employee[currentIndex].name = input.nextLine();
@@ -142,8 +158,8 @@ public class Main
         }
 
         System.out.printf("Is employee sindycalist? (1 - Yes | 0 - No)");
-        employee[currentIndex].isSyndicalist = input.nextBoolean();
-        if(isSindycalistEmployee(employee[currentIndex].isSyndicalist) == true)
+        employee[currentIndex].isSyndicalist = input.nextInt();
+        if(isSindycalistEmployee(employee[currentIndex].isSyndicalist) == 1)
         {
             System.out.printf("Enter to number of syndicate - 3 digits:\n");
             employee[currentIndex].getIdEmployeeSyndicalist = input.nextInt();
@@ -162,5 +178,131 @@ public class Main
         employee[currentIndex].typeOfPayment = employee[currentIndex].typeOfPayment.toUpperCase();
     }
 
+    // GUARDANDO DADOS POR SEGURANÇA
+    public static void safetyData(Employee currentEmployee, Employee safetyEmployee)
+    {
+        safetyEmployee.name = currentEmployee.name;
+        safetyEmployee.address = currentEmployee.address;
+        safetyEmployee.typeEmployee = currentEmployee.typeEmployee;
+        safetyEmployee.idEmployee = currentEmployee.idEmployee;
+        safetyEmployee.wageSalary = currentEmployee.wageSalary;
+        safetyEmployee.monthlySalary = currentEmployee.monthlySalary;
+        safetyEmployee.commissioned = currentEmployee.commissioned;
+        safetyEmployee.salaryEmployee = currentEmployee.salaryEmployee;
+        safetyEmployee.isSyndicalist = currentEmployee.isSyndicalist;
+        safetyEmployee.getIdEmployeeSyndicalist = currentEmployee.getIdEmployeeSyndicalist;
+        safetyEmployee.unionFee = currentEmployee.unionFee;
+        safetyEmployee.outherFees = currentEmployee.outherFees;
+        safetyEmployee.typeOfPayment = currentEmployee.typeOfPayment;
+        safetyEmployee.typeAgend = currentEmployee.typeAgend;
+        safetyEmployee.weeklyDay = currentEmployee.weeklyDay;
+        safetyEmployee.dataDay = currentEmployee.dataDay;
+    }
+
+    public static void printEmployee(Employee[] employees)
+    {
+        for(int i = 0; i < 100; ++i)
+        {
+            if(employees[i] != null)
+                System.out.println("ID employee:", + employees[i].idEmployee + "\nName employee:", + employees[i].name);
+        }
+    }
+
+    // REMOVENDO EMPREGADO
+    public static void removeEmployee(Employee[] employee, Scanner input)
+    {
+        printEmployee(employee);
+        int lastEmployeeId = employee.length;
+        System.out.printf("Please enter the employee ID you wish to remove [0 - %d]:");
+        int idInput = input.nextInt() - 1;
+
+        printEmployee(employee);
+        int idInput = input.nextInt() - 1;
+
+        if(employee[idInput] != null)
+        {
+            System.out.println("Confirm employee removal " + employee[idInput].name + "(Yes | No):");
+            String answer = input.nextLine();
+            answer = answer.toUpperCase();
+
+            if(answer == "YES")
+            {
+                employee[100] = new Employee();
+                safetyData(employee[idInput], employee[100]);
+                employee[idInput] = null;
+                System.out.println("Employee " + employee[idInput].name + "removal successfully!");
+            }else{
+                System.out.printf("Canceled employee removal!\n");
+            }
+
+        } else{
+            System.out.printf("Employee %d is not exists!\n", idInput);
+        }
+    }
+
+    // LANÇANDO O CARTÃO DE PONTO DO EMPREGADO HORISTA
+    public static void launchTodayCardPoint(Employee[] employees, Scanner input)
+    {
+        printEmployee(employees);
+        int lastEmployeeId = employees.length;
+        System.out.printf("Enter to ID employee [0 - %d]\n", lastEmployeeId);
+        int idInput = input.nextInt() - 1;
+
+        if(employees[idInput] == null)
+        {
+            System.out.println("Employee is not exists!");
+        }else{
+            String type = employees[idInput].typeEmployee;
+            type = type.toUpperCase();
+
+            if(type == "HOURLY")
+            {
+                System.out.printf("Enter the number of hours worked today:\n");
+                double workedHours = input.nextDouble();
+                safetyData(employees[idInput], employees[100]);
+
+                if(workedHours < 0 || workedHours > 24)
+                {
+                    System.out.printf("Hours invalid!\nEnter to new value:");
+                    workedHours = input.nextDouble();
+                }else if(workedHours > 0 && workedHours <= 8)
+                {
+                    employees[idInput].salaryEmployee += (workedHours * employees[idInput].wageSalary);
+                    System.out.printf("Day time card ok!\nYou worked until 8 hours!\nThank you!");
+                }else{
+                    double extraHours = workedHours - 8;
+                    employees[idInput].salaryEmployee += ((8 * employees[idInput].wageSalary) +
+                            (extraHours * employees[idInput].wageSalary * 1.5));
+                    System.out.printf("Day time card ok!\nYou worked more than 8 hours!\nThank you!\n");
+                }
+            }
+        }
+    }
+
+    // LANÇANDO TAXAS ADICIONAIS DE SERVIÇO
+    public static void unioFeeEmployee(Employee[] employees, Scanner input)
+    {
+        printEmployee(employees);
+        int lastEmployeeId = employees.length;
+        System.out.printf("Enter to ID employee for add UNION FEE:[0 - %d]\n", lastEmployeeId);
+        int idInput = input.nextInt() - 1;
+
+        if(employees[idInput] == null)
+        {
+            System.out.println("Employee is not exists!");
+        }else{
+            if(isSindycalistEmployee(employees[idInput].isSyndicalist) == 1)
+            {
+                employees[100] = new Employee();
+                safetyData(employees[idInput], employees[100]);
+                System.out.println("Enter to the FEE:");
+                double outhersFee = input.nextDouble();
+                employees[idInput].outherFees = outhersFee;
+                System.out.println("FEE registered ok!");
+            }else{
+                System.out.printf("Employee is not syndicalist!\n");
+            }
+        }
+    }
 
 }
