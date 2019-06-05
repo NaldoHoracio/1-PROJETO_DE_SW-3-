@@ -129,6 +129,7 @@ public class Main
             {
                 System.out.println("Option in the implementation phase!");
             }
+            System.out.printf("\n\n");
         }while(op != 0);
     }
 
