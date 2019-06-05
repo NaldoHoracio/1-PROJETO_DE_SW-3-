@@ -58,7 +58,78 @@ public class Main
 
     public static void main(String[] args)
     {
-        System.out.printf("Hello world!\n");
+        int op;
+        Scanner input = new Scanner(System.in);
+        Employee[] employees = new Employee[101];
+        employees[100] = new Employee();
+
+        AgendaPayroll agenda = new AgendaPayroll();
+
+        int currentAction = 0, currentLastAction = -1;
+
+        for(int i = 0; i < 27; ++i)
+        {
+            agenda.monthlyPayment[i] = 0;
+            if(i < 5)
+            {
+                agenda.weeklyPayment[i] = 0;
+                agenda.biWeeklyPayment[i] = 0;
+            }
+        }
+
+        agenda.monthlyPayment[26] = 1;
+        agenda.weeklyPayment[4] = 1;
+        agenda.biWeeklyPayment[4] = 1;
+
+        do {
+            menuPayroll();
+            op = input.nextInt();
+
+            if(op == 0)
+            {
+                System.out.println("Thank you for using Horacio's Payroll System!");
+            }
+            else if(op == 1)
+            {
+                currentAction = addEmployee(employees,input);
+            }
+            else if(op == 2)
+            {
+                removeEmployee(employees,input);
+            }
+            else if(op == 3)
+            {
+                launchTodayCardPoint(employees,input);
+            }
+            else if(op == 4)
+            {
+                saleResult(employees,input);
+            }
+            else if(op == 5)
+            {
+                othersFeeEmployee(employees,input);
+            }
+            else if(op == 6)
+            {
+                changeDataEmployee(employees,input);
+            }
+            else if(op == 7)
+            {
+                runPayrollToday(employees,input);
+            }
+            else if(op == 8)
+            {
+                undoRedo(employees,currentAction, currentLastAction, input);
+            }
+            else if(op == 9)
+            {
+                alterAgendaPayroll(employees,agenda,input);
+            }
+            else if(op == 10)
+            {
+                System.out.println("Option in the implementation phase!");
+            }
+        }while(op != 0);
     }
 
     // MENU DO SYSTEMA
@@ -76,6 +147,7 @@ public class Main
         System.out.println("8 - Undo/Redo function.");
         System.out.println("9 - Payment agenda run.");
         System.out.println("10 - Create news payment agendas.");
+        System.out.println("0 - Exit to Payroll System.");
     }
 
     public static int isSindycalistEmployee(int is)
@@ -84,7 +156,7 @@ public class Main
     }
 
     // ADICIONANDO EMPREGADO
-    public static void addEmployee(Employee[] employee, Scanner input)
+    public static int addEmployee(Employee[] employee, Scanner input)
     {
         int currentIndex = 0;
         NumberEmployee number = new NumberEmployee(100);
@@ -176,6 +248,8 @@ public class Main
         System.out.printf("Enter to type of payment (CORREIOS, MAOS, DEPOSITO):\n");
         employee[currentIndex].typeOfPayment = input.nextLine();
         employee[currentIndex].typeOfPayment = employee[currentIndex].typeOfPayment.toUpperCase();
+
+        return currentIndex;
     }
 
     // GUARDANDO DADOS POR SEGURANÇA
@@ -204,7 +278,7 @@ public class Main
         for(int i = 0; i < 100; ++i)
         {
             if(employees[i] != null)
-                System.out.println("ID employee:", + employees[i].idEmployee + "\nName employee:", + employees[i].name);
+                System.out.printf("ID employee:", + employees[i].idEmployee + "\nName employee: %s\n", employees[i].name);
         }
     }
 
@@ -279,8 +353,36 @@ public class Main
         }
     }
 
+    // RESULTADO DA VENDA
+    public static void saleResult(Employee[] employees, Scanner input)
+    {
+        printEmployee(employees);
+        int lastEmployeeId = employees.length;
+        System.out.printf("Enter to ID employee for add UNION FEE:[0 - %d]\n", lastEmployeeId);
+        int idInput = input.nextInt() - 1;
+
+        if(employees[idInput] == null)
+        {
+            System.out.println("Employee is not exists!");
+        }else{
+            if(employees[idInput].typeEmployee == "COMISSIONED")
+            {
+                System.out.println("Enter to sale result:");
+                double sale = input.nextDouble();
+                employees[100] = new Employee();
+                safetyData(employees[idInput], employees[100]);
+
+                employees[idInput].salaryEmployee += sale * (employees[idInput].commissioned/100);
+
+                System.out.printf("Registered of the SALE RESULT of the employee %s is ok!", employees[idInput].name);
+            }else{
+                System.out.println("Employee %s" + employees[idInput].name + "is not COMISSIONED!");
+            }
+        }
+    }
+
     // LANÇANDO TAXAS ADICIONAIS DE SERVIÇO
-    public static void unioFeeEmployee(Employee[] employees, Scanner input)
+    public static void othersFeeEmployee(Employee[] employees, Scanner input)
     {
         printEmployee(employees);
         int lastEmployeeId = employees.length;
@@ -305,4 +407,423 @@ public class Main
         }
     }
 
+    // ALTERAR DADOS DE UM EMPREGADO
+    public static void changeDataEmployee(Employee[] employees, Scanner input)
+    {
+        printEmployee(employees);
+        int lastEmployeeId = employees.length;
+        System.out.printf("Enter to ID employee for change data:[0 - %d]\n", lastEmployeeId);
+        int idInput = input.nextInt() - 1;
+
+        if(employees[idInput] == null)
+        {
+            System.out.println("Employee is not exists!");
+        }else{
+            employees[100] = new Employee();
+            safetyData(employees[idInput], employees[100]);
+
+            System.out.println("Change NAME employee with name " + employees[idInput].name
+            + "(Yes | No)?");
+            String answer = input.nextLine();
+            answer = answer.toUpperCase();
+
+            if(answer == "YES")
+            {
+                System.out.println("Enter to new NAME employee:");
+                employees[idInput].name = input.nextLine();
+            }else{
+                System.out.println("Unchanged NAME!");
+            }
+
+            System.out.println("Change ADDRESS employee " + employees[idInput].address
+                    + "(Yes | No)?");
+            answer = input.nextLine();
+            answer = answer.toUpperCase();
+
+            if(answer == "YES")
+            {
+                System.out.println("Enter to new ADDRESS employee:");
+                employees[idInput].address = input.nextLine();
+            }else {
+                System.out.println("Unchanged ADDRESS!");
+            }
+
+            System.out.println("Change TYPE employee " + employees[idInput].typeEmployee
+                    + "(Yes | No)?");
+            answer = input.nextLine();
+            answer = answer.toUpperCase();
+
+            if(answer == "NO")
+            {
+                System.out.println("Unchanged TYPE!");
+            }else {
+                System.out.println("Enter to new TYPE employee:");
+                System.out.println("HOURLY\nSALARIED\nCOMISSIONED:");
+                String type = input.nextLine();
+                type = type.toUpperCase();
+                employees[idInput].typeEmployee = type;
+
+                if(employees[idInput].typeEmployee == "HOURLY")
+                {
+                    System.out.println("Enter to salary for Hourly employee (example: 10.85):\n");
+                    employees[idInput].wageSalary = input.nextDouble();
+                    employees[idInput].monthlySalary = 0.0;// Salário mensal
+                    employees[idInput].commissioned = 0.0;// Comissão
+                    employees[idInput].salaryEmployee = 0.0;// Salário total
+
+                    System.out.println("Type of default payment agend is Weekly.\n");
+                    employees[idInput].typeAgend = "WEEKLY";// Pagos semanalmente
+
+                    employees[idInput].weeklyDay = 5;// Por default, são pagos toda a sexta
+
+                    employees[idInput].dataDay = 0;// Dia do mês que é pago
+                }
+                else if(employees[idInput].typeEmployee == "SALARIED")
+                {
+                    employees[idInput].wageSalary = 0.0;// Salário por hora
+                    System.out.println("Enter to salary for mouthly salary:\n");
+                    employees[idInput].monthlySalary = input.nextDouble();// Salário mensal
+                    employees[idInput].commissioned = 0.0;// Comissão
+                    employees[idInput].salaryEmployee = 0.0;// Salário total
+                }
+
+                else if(employees[idInput].typeEmployee == "COMISSIONED")
+                {
+
+                    employees[idInput].wageSalary = 0.0;// Salário por hora
+                    System.out.println("Enter to salary for mouthly salary:\n");
+                    employees[idInput].monthlySalary = input.nextDouble();// Salário mensal
+                    System.out.println("Enter to percentage of sales commissions (ex. 20 (present 0.2 or 20 percent of comissioned):\n");
+                    employees[idInput].commissioned = input.nextDouble();// Comissão em %
+                    employees[idInput].salaryEmployee = 0.0;// Salário total
+
+                }else{
+                    System.out.println("TYPE employee " + type + " is not exists!");
+                }
+
+                System.out.println("Change PAYMENT TYPE?");
+                answer = input.nextLine();
+                answer = answer.toUpperCase();
+
+                if(answer == "NO")
+                {
+                    System.out.println("Unchanged PAYMENT TYPE!");
+                }else{
+                    String typePayment = input.nextLine();
+                    typePayment = typePayment.toUpperCase();
+
+                    if(typePayment == "WEEKLY")
+                    {
+                        System.out.printf("Type of default payment agend is Weekly.\n");
+                        employees[idInput].typeAgend = "WEEKLY";// Pagos semanalmente
+
+                        employees[idInput].weeklyDay = 5;// Por default, são pagos toda a sexta
+
+                        employees[idInput].dataDay = 0;// Dia do mês que é pago
+                    }
+                    else if(typePayment == "MONTHLY")
+                    {
+                        System.out.println("Type of default payment agend is Monthly.\n");
+                        employees[idInput].typeAgend = "MONTHLY";// Pagos mensalmente
+
+                        employees[idInput].weeklyDay = 0;// Pagamento semanal
+
+                        employees[idInput].dataDay = 27;// Dia do mês que é pago (último dia do mês)
+                    }
+                    else if(typePayment == "BIWEEKLY")
+                    {
+                        System.out.println("Type of default payment agend is BiWeekly.\n");
+                        employees[idInput].typeAgend = "BIWEEKLY";// Pagos bi-semanalmente
+
+                        employees[idInput].weeklyDay = 5;// Pagamento semanal toda sexta
+
+                        employees[idInput].dataDay = 0;// Dia do mês que é pago
+                    }
+
+                }
+
+                System.out.println("Change employee participation in Syndicate?");
+                answer = input.nextLine();
+                answer = answer.toUpperCase();
+
+                if(answer == "NO")
+                {
+                    System.out.println("Unchanged participation in SYNDICATE!");
+                }else{
+                    System.out.println("The employee is part of the SYNDICATE?");
+                    if(isSindycalistEmployee(employees[idInput].isSyndicalist) == 1)
+                    {
+                        System.out.println("Canceled SYNDICATE membership!");
+
+                        System.out.println("Canceled number SYNDICATE!");
+                        employees[idInput].getIdEmployeeSyndicalist = -1;
+
+                        System.out.printf("Canceled FEE syndicate!\n");
+                        employees[idInput].unionFee = 0.0;
+
+                        System.out.printf("Canceled other fees syndicate!\n");
+                        employees[idInput].outherFees = 0.0;
+
+                    }else{
+                        System.out.println("Enter to number of syndicate - 3 digits:");
+                        employees[idInput].getIdEmployeeSyndicalist = input.nextInt();
+
+                        System.out.println("Enter to fee syndicate:");
+                        employees[idInput].unionFee = input.nextDouble();
+
+                        System.out.println("Enter to other fees syndicate:");
+                        employees[idInput].outherFees = input.nextDouble();
+                    }
+                }
+            }
+        }
+    }
+
+    // RODAR FOLHA DE PAGAMENTO
+
+    // FUNÇÃO AUXILIAR
+    public static int lastDayMonth(int day, int month, int year)
+    {
+        if(day == 31 && (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12))
+        {
+            return 1;
+        }
+        else if(day == 30 && (month == 4 || month == 6 || month == 9 || month == 11))
+        {
+            return 1;
+        }
+        else if(day == 29 && (month == 2 && year % 4 == 0))// ANO BISSEXTO
+        {
+            return 1;
+        }
+        else if(day == 28 && (month == 2 && year % 4 != 0))// ANO NÃO BISSEXTO
+        {
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    // PAGAMENTO SEMANAL
+    public static void weeklyPayment(Employee[] employees, int dataToday)
+    {
+        for (int i = 0; i < 100; ++i)
+        {
+            if(employees[i] != null)
+            {
+                if(employees[i].typeAgend == "WEEKLY" && employees[i].weeklyDay == dataToday)
+                {
+                    employees[i].salaryEmployee += (employees[i].monthlySalary/4) - ((employees[i].unionFee + employees[i].outherFees)/4);
+                    System.out.printf("Salary of the employee %s", employees[i].name, " is %.2f\n", employees[i].salaryEmployee);
+                    employees[i].salaryEmployee = 0.0;
+                    //employees[i].outherFees = 0.0;
+                }
+            }else{
+                System.out.printf("Employee %d is not exists!\n", i);
+            }
+        }
+    }
+
+    // PAGAMENTO MENSAL
+    public static void monthlyPayment(Employee[] employees, int dataToday)
+    {
+        for (int i = 0; i < 100; ++i)
+        {
+            if(employees[i] != null)
+            {
+                if(employees[i].typeAgend == "MONTHLY" && employees[i].dataDay == dataToday)
+                {
+                    employees[i].salaryEmployee += employees[i].monthlySalary - (employees[i].unionFee + employees[i].outherFees);
+                    System.out.printf("Salary of the employee %s", employees[i].name," is %.2f\n", employees[i].salaryEmployee);
+                    employees[i].salaryEmployee = 0.0;
+                    //employees[i].outherFees = 0.0;
+                }
+            }else{
+                System.out.printf("Employee %d is not exists!\n", i);
+            }
+        }
+    }
+    // PAGAMENTO BISSEMANAL
+    public static void biweeklyPayment(Employee[] employees, int dataToday)
+    {
+        for (int i = 0; i < 100; ++i)
+        {
+            if(employees[i] != null)
+            {
+                if(employees[i].typeAgend == "BIWEEKLY" && employees[i].dataDay == dataToday)
+                {
+                    employees[i].salaryEmployee += (employees[i].monthlySalary/2) - ((employees[i].unionFee + employees[i].outherFees)/2);
+                    System.out.printf("Salary of the employee %s", employees[i].name, " is %.2f", employees[i].salaryEmployee);
+                    employees[i].salaryEmployee = 0.0;
+                    //employees[i].outherFees = 0.0;
+                }
+            }else{
+                System.out.printf("Employee %d is not exists!\n", i);
+            }
+        }
+    }
+    // SUPONDO CADA MÊS COMEÇANDO NO DOMINGO (PARA FACILITAR)
+    public static void runPayrollToday(Employee[] employees, Scanner input)
+    {
+        int paymentDay;
+        System.out.println("Please, enter to current day:");
+        int day = input.nextInt();
+        System.out.println("Please, enter to current month:");
+        int month = input.nextInt();
+        System.out.println("Please, enter to current year:");
+        int year = input.nextInt();
+        System.out.println("Please, enter to current weekly day:");
+        System.out.println("1 - Monday | 2 - Tuesday | 3 - Wednesday | 4 - Thursday | 5 - Friday:");
+        int weekday = input.nextInt();
+
+        if(weekday < 1 || weekday > 5)
+        {
+            System.out.println("Weekday incorrect! Enter to new number representing weekday [1 to 5]");
+            weekday = input.nextInt();
+        }
+
+        int auxDay = lastDayMonth(day,month,year);
+
+        if(auxDay == 1)
+        {
+            paymentDay = 27;
+        }else{
+            paymentDay = day;
+        }
+        monthlyPayment(employees, paymentDay);
+        weeklyPayment(employees,5);
+        // Quando é bissemanal, o dia fica entre 7 ^ 15 ou 21 ^ 28
+        if((day >= 8 && day <= 14) || (day >= 22 && day <= 28))
+        {
+            biweeklyPayment(employees, weekday);
+        }else
+        {
+            System.out.println("Invalid day!");
+        }
+    }
+
+    // UNDO ^ REDO
+    public static void undoRedo(Employee[] employees, int currentAction, int currentLastAction, Scanner input)
+    {
+        System.out.println("UNDO or REDO?");
+        String action = input.nextLine();
+        action = action.toUpperCase();
+
+        if(action == "UNDO")
+        {
+            switch (currentAction)
+            {
+                case 0:
+                    System.out.println("Anywhere operation in Payroll System!");
+                    break;
+                case 1:
+                    employees[100] = new Employee();
+                    safetyData(employees[currentLastAction], employees[100]);
+                    employees[currentAction] = null;
+                    System.out.println("UNDO successfully!");
+                    break;
+                case 2:
+                    int index = employees[100].idEmployee - 1;
+                    employees[index] = new Employee();
+                    safetyData(employees[100], employees[index]);
+                    System.out.println("UNDO successfully!");
+                    break;
+                default:
+                    index = employees[100].idEmployee - 1;
+                    Employee auxEmployee = new Employee();
+                    // Swap
+                    safetyData(employees[index], auxEmployee);
+                    safetyData(employees[100], employees[index]);
+                    safetyData(auxEmployee, employees[100]);
+                    System.out.println("UNDO successfully!");
+                    break;
+            }
+        }
+        else if(action == "REDO")
+        {
+            int index = employees[100].idEmployee - 1;
+            switch (currentAction)
+            {
+                case 1:
+                    employees[index] = new Employee();
+                    safetyData(employees[100], employees[index]);
+                    break;
+                case 2:
+                    employees[index] = null;
+                    break;
+                 default:
+                     Employee auxEmployee = new Employee();
+                     safetyData(employees[index], auxEmployee);
+                     safetyData(employees[100], employees[index]);
+                     System.out.println("REDO successfully!");
+            }
+        }
+    }
+
+    // ALTERANDO AGENDA DE PAGAMENTO
+    public static void alterAgendaPayroll(Employee[] employees, AgendaPayroll agenda, Scanner input)
+    {
+        printEmployee(employees);
+        int lastEmployeeId = employees.length;
+        System.out.printf("Enter to ID employee for change data:[0 - %d]\n", lastEmployeeId);
+        int idInput = input.nextInt() - 1;
+
+        if(employees[idInput] == null)
+        {
+            System.out.printf("Employee is not exists!\n");
+        }else{
+            int chooseDay;
+            System.out.println("Choose the type of payment agenda:");
+            System.out.println("WEEKLY | MONTHLY | BIWEEKLY");
+            String typeAgenda = input.nextLine();
+            typeAgenda = typeAgenda.toUpperCase();
+
+            if(typeAgenda == "WEEKLY")
+            {
+                System.out.println("Choose the day of the payment employee:");
+                System.out.println("1 - Monday | 2 - Tuesday | 3 - Wednesday | 4 - Thursday | 5 - Friday:");
+                chooseDay = input.nextInt();
+
+                if (agenda.weeklyPayment[chooseDay] == 1)
+                {
+                    employees[idInput].weeklyDay = chooseDay;
+                    employees[idInput].typeAgend = "WEEKLY";
+                    employees[idInput].dataDay = 0;
+                    System.out.println("Changed AGENDA successfully!");
+                }else{
+                    System.out.println("Not available AGENDA!");
+                }
+            }
+            else if(typeAgenda == "MONTHLY")
+            {
+                System.out.println("Employee payday in the month:");
+                chooseDay = input.nextInt();
+
+                if(agenda.monthlyPayment[chooseDay] == 1)
+                {
+                    employees[idInput].weeklyDay = chooseDay;
+                    employees[idInput].typeAgend = "MONTHLY";
+                    employees[idInput].dataDay = -1;
+                    System.out.println("Changed AGENDA successfully!");
+                }else{
+                    System.out.println("Not available AGENDA!");
+                }
+            }
+            else if(typeAgenda == "BIWEEKLY")
+            {
+                System.out.printf("Choose the day of the payment employee:\n");
+                System.out.printf("1 - Monday | 2 - Tuesday | 3 - Wednesday | 4 - Thursday | 5 - Friday:\n");
+                chooseDay = input.nextInt();
+
+                if (agenda.weeklyPayment[chooseDay] == 1)
+                {
+                    employees[idInput].weeklyDay = chooseDay;
+                    employees[idInput].typeAgend = "BIWEEKLY";
+                    employees[idInput].dataDay = 0;
+                    System.out.println("Changed AGENDA successfully!");
+                }else{
+                    System.out.println("Not available AGENDA!");
+                }
+            }
+        }
+    }
 }
