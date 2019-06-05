@@ -168,26 +168,28 @@ public class Main
 
         System.out.printf("Please, enter to employee name:\n");
         employee[currentIndex].name = input.nextLine();
+        input.nextLine();
 
         System.out.printf("Please, enter to employee address:\n");
         employee[currentIndex].address = input.nextLine();
 
-        System.out.printf("Number of employee id (primary key):\n");
+        System.out.printf("Number of employee ID (primary key) is currentIndex.\n");
         employee[currentIndex].idEmployee = currentIndex;
 
         System.out.printf("Please, choose the salary according to the type of employee - HOURLY | SALARIED | COMISSIONED:\n");
         employee[currentIndex].typeEmployee = input.nextLine();
         employee[currentIndex].typeEmployee = employee[currentIndex].typeEmployee.toUpperCase();
 
-        if(employee[currentIndex].typeEmployee == "HOURLY")
+        //if(employee[currentIndex].typeEmployee == "HOURLY")
+        if(employee[currentIndex].typeEmployee.equals("HOURLY"))
         {
-            System.out.printf("Enter to salary for Hourly employee (example: 10.85):\n");
+            System.out.println("Enter to salary for Hourly employee (example: 10.85):");
             employee[currentIndex].wageSalary = input.nextDouble();
             employee[currentIndex].monthlySalary = 0.0;// Salário mensal
             employee[currentIndex].commissioned = 0.0;// Comissão
             employee[currentIndex].salaryEmployee = 0.0;// Salário total
 
-            System.out.printf("Type of default payment agend is Weekly.\n");
+            System.out.println("Type of default payment agend is Weekly.");
             employee[currentIndex].typeAgend = "WEEKLY";// Pagos semanalmente
 
             employee[currentIndex].weeklyDay = 5;// Por default, são pagos toda a sexta
@@ -195,7 +197,8 @@ public class Main
             employee[currentIndex].dataDay = 0;// Dia do mês que é pago
         }
 
-        else if(employee[currentIndex].typeEmployee == "SALARIED")
+        //else if(employee[currentIndex].typeEmployee == "SALARIED")
+        else if(employee[currentIndex].typeEmployee.equals("SALARIED"))
         {
             employee[currentIndex].wageSalary = 0.0;// Salário por hora
             System.out.printf("Enter to salary for mouthly salary:\n");
@@ -211,7 +214,8 @@ public class Main
             employee[currentIndex].dataDay = 27;// Dia do mês que é pago (último dia do mês)
         }
 
-        else if(employee[currentIndex].typeEmployee == "COMISSIONED")
+        //else if(employee[currentIndex].typeEmployee. == "COMISSIONED")
+        else if(employee[currentIndex].typeEmployee.equals("COMISSIONED"))
         {
 
             employee[currentIndex].wageSalary = 0.0;// Salário por hora
@@ -229,12 +233,14 @@ public class Main
             employee[currentIndex].dataDay = 0;// Dia do mês que é pago
         }
 
-        System.out.printf("Is employee sindycalist? (1 - Yes | 0 - No)");
+        input.nextLine();
+        System.out.printf("Is employee sindycalist? (1 - Yes | 0 - No):\n");
         employee[currentIndex].isSyndicalist = input.nextInt();
         if(isSindycalistEmployee(employee[currentIndex].isSyndicalist) == 1)
         {
             System.out.printf("Enter to number of syndicate - 3 digits:\n");
             employee[currentIndex].getIdEmployeeSyndicalist = input.nextInt();
+            input.nextLine();
 
             System.out.printf("Enter to fee syndicate:\n");
             employee[currentIndex].unionFee = input.nextDouble();
@@ -245,6 +251,7 @@ public class Main
             System.out.printf("Employee is not syndicalist!\n");
         }
 
+        input.nextLine();
         System.out.printf("Enter to type of payment (CORREIOS, MAOS, DEPOSITO):\n");
         employee[currentIndex].typeOfPayment = input.nextLine();
         employee[currentIndex].typeOfPayment = employee[currentIndex].typeOfPayment.toUpperCase();
@@ -252,7 +259,7 @@ public class Main
         return currentIndex;
     }
 
-    // GUARDANDO DADOS POR SEGURANÇA
+    // GUARDANDO DADOS POR SEGURANÇA PARA UNDO E REDO
     public static void safetyData(Employee currentEmployee, Employee safetyEmployee)
     {
         safetyEmployee.name = currentEmployee.name;
@@ -278,7 +285,7 @@ public class Main
         for(int i = 0; i < 100; ++i)
         {
             if(employees[i] != null)
-                System.out.printf("ID employee:", + employees[i].idEmployee + "\nName employee: %s\n", employees[i].name);
+                System.out.printf("ID employee: %d", employees[i].idEmployee, "\nName employee: %s\n", employees[i].name);
         }
     }
 
@@ -287,10 +294,7 @@ public class Main
     {
         printEmployee(employee);
         int lastEmployeeId = employee.length;
-        System.out.printf("Please enter the employee ID you wish to remove [0 - %d]:");
-        int idInput = input.nextInt() - 1;
-
-        printEmployee(employee);
+        System.out.printf("Please enter the employee ID you wish to remove [0 - %d]:\n", lastEmployeeId);
         int idInput = input.nextInt() - 1;
 
         if(employee[idInput] != null)
@@ -329,7 +333,8 @@ public class Main
             String type = employees[idInput].typeEmployee;
             type = type.toUpperCase();
 
-            if(type == "HOURLY")
+            //if(type == "HOURLY")
+            if(type.equals("HOURLY"))
             {
                 System.out.printf("Enter the number of hours worked today:\n");
                 double workedHours = input.nextDouble();
@@ -342,7 +347,7 @@ public class Main
                 }else if(workedHours > 0 && workedHours <= 8)
                 {
                     employees[idInput].salaryEmployee += (workedHours * employees[idInput].wageSalary);
-                    System.out.printf("Day time card ok!\nYou worked until 8 hours!\nThank you!");
+                    System.out.printf("Day time card ok!\nYou worked until 8 hours!\nThank you!\n");
                 }else{
                     double extraHours = workedHours - 8;
                     employees[idInput].salaryEmployee += ((8 * employees[idInput].wageSalary) +
@@ -365,7 +370,8 @@ public class Main
         {
             System.out.println("Employee is not exists!");
         }else{
-            if(employees[idInput].typeEmployee == "COMISSIONED")
+            //if(employees[idInput].typeEmployee == "COMISSIONED")
+            if(employees[idInput].typeEmployee.equals("COMISSIONED"))
             {
                 System.out.println("Enter to sale result:");
                 double sale = input.nextDouble();
@@ -427,7 +433,8 @@ public class Main
             String answer = input.nextLine();
             answer = answer.toUpperCase();
 
-            if(answer == "YES")
+            //if(answer == "YES")
+            if(answer.equals("YES"))
             {
                 System.out.println("Enter to new NAME employee:");
                 employees[idInput].name = input.nextLine();
@@ -440,7 +447,8 @@ public class Main
             answer = input.nextLine();
             answer = answer.toUpperCase();
 
-            if(answer == "YES")
+            //if(answer == "YES")
+            if(answer.equals("YES"))
             {
                 System.out.println("Enter to new ADDRESS employee:");
                 employees[idInput].address = input.nextLine();
@@ -453,7 +461,8 @@ public class Main
             answer = input.nextLine();
             answer = answer.toUpperCase();
 
-            if(answer == "NO")
+            //if(answer == "NO")
+            if(answer.equals("NO"))
             {
                 System.out.println("Unchanged TYPE!");
             }else {
@@ -463,7 +472,8 @@ public class Main
                 type = type.toUpperCase();
                 employees[idInput].typeEmployee = type;
 
-                if(employees[idInput].typeEmployee == "HOURLY")
+                //if(employees[idInput].typeEmployee == "HOURLY")
+                if(employees[idInput].typeEmployee.equals("HOURLY"))
                 {
                     System.out.println("Enter to salary for Hourly employee (example: 10.85):\n");
                     employees[idInput].wageSalary = input.nextDouble();
@@ -478,7 +488,8 @@ public class Main
 
                     employees[idInput].dataDay = 0;// Dia do mês que é pago
                 }
-                else if(employees[idInput].typeEmployee == "SALARIED")
+                //else if(employees[idInput].typeEmployee == "SALARIED")
+                else if(employees[idInput].typeEmployee.equals("SALARIED"))
                 {
                     employees[idInput].wageSalary = 0.0;// Salário por hora
                     System.out.println("Enter to salary for mouthly salary:\n");
@@ -487,7 +498,8 @@ public class Main
                     employees[idInput].salaryEmployee = 0.0;// Salário total
                 }
 
-                else if(employees[idInput].typeEmployee == "COMISSIONED")
+                //else if(employees[idInput].typeEmployee == "COMISSIONED")
+                else if(employees[idInput].typeEmployee.equals("COMISSIONED"))
                 {
 
                     employees[idInput].wageSalary = 0.0;// Salário por hora
@@ -505,14 +517,16 @@ public class Main
                 answer = input.nextLine();
                 answer = answer.toUpperCase();
 
-                if(answer == "NO")
+                //if(answer == "NO")
+                if(answer.equals("NO"))
                 {
                     System.out.println("Unchanged PAYMENT TYPE!");
                 }else{
                     String typePayment = input.nextLine();
                     typePayment = typePayment.toUpperCase();
 
-                    if(typePayment == "WEEKLY")
+                    //if(typePayment == "WEEKLY")
+                    if(typePayment.equals("WEEKLY"))
                     {
                         System.out.printf("Type of default payment agend is Weekly.\n");
                         employees[idInput].typeAgend = "WEEKLY";// Pagos semanalmente
@@ -521,7 +535,8 @@ public class Main
 
                         employees[idInput].dataDay = 0;// Dia do mês que é pago
                     }
-                    else if(typePayment == "MONTHLY")
+                    //else if(typePayment == "MONTHLY")
+                    else if(typePayment.equals("MONTHLY"))
                     {
                         System.out.println("Type of default payment agend is Monthly.\n");
                         employees[idInput].typeAgend = "MONTHLY";// Pagos mensalmente
@@ -530,7 +545,8 @@ public class Main
 
                         employees[idInput].dataDay = 27;// Dia do mês que é pago (último dia do mês)
                     }
-                    else if(typePayment == "BIWEEKLY")
+                    //else if(typePayment == "BIWEEKLY")
+                    else if(typePayment.equals("BIWEEKLY"))
                     {
                         System.out.println("Type of default payment agend is BiWeekly.\n");
                         employees[idInput].typeAgend = "BIWEEKLY";// Pagos bi-semanalmente
@@ -546,7 +562,8 @@ public class Main
                 answer = input.nextLine();
                 answer = answer.toUpperCase();
 
-                if(answer == "NO")
+                //if(answer == "NO")
+                if(answer.equals("NO"))
                 {
                     System.out.println("Unchanged participation in SYNDICATE!");
                 }else{
@@ -610,7 +627,8 @@ public class Main
         {
             if(employees[i] != null)
             {
-                if(employees[i].typeAgend == "WEEKLY" && employees[i].weeklyDay == dataToday)
+                //if(employees[i].typeAgend == "WEEKLY" && employees[i].weeklyDay == dataToday)
+                if(employees[i].typeAgend.equals("WEEKLY") && employees[i].weeklyDay == dataToday)
                 {
                     employees[i].salaryEmployee += (employees[i].monthlySalary/4) - ((employees[i].unionFee + employees[i].outherFees)/4);
                     System.out.printf("Salary of the employee %s", employees[i].name, " is %.2f\n", employees[i].salaryEmployee);
@@ -630,7 +648,8 @@ public class Main
         {
             if(employees[i] != null)
             {
-                if(employees[i].typeAgend == "MONTHLY" && employees[i].dataDay == dataToday)
+                //if(employees[i].typeAgend == "MONTHLY" && employees[i].dataDay == dataToday)
+                if(employees[i].typeAgend.equals("MONTHLY") && employees[i].dataDay == dataToday)
                 {
                     employees[i].salaryEmployee += employees[i].monthlySalary - (employees[i].unionFee + employees[i].outherFees);
                     System.out.printf("Salary of the employee %s", employees[i].name," is %.2f\n", employees[i].salaryEmployee);
@@ -649,7 +668,8 @@ public class Main
         {
             if(employees[i] != null)
             {
-                if(employees[i].typeAgend == "BIWEEKLY" && employees[i].dataDay == dataToday)
+                //if(employees[i].typeAgend == "BIWEEKLY" && employees[i].dataDay == dataToday)
+                if(employees[i].typeAgend.equals("BIWEEKLY") && employees[i].dataDay == dataToday)
                 {
                     employees[i].salaryEmployee += (employees[i].monthlySalary/2) - ((employees[i].unionFee + employees[i].outherFees)/2);
                     System.out.printf("Salary of the employee %s", employees[i].name, " is %.2f", employees[i].salaryEmployee);
@@ -708,7 +728,8 @@ public class Main
         String action = input.nextLine();
         action = action.toUpperCase();
 
-        if(action == "UNDO")
+        //if(action == "UNDO")
+        if(action.equals("UNDO"))
         {
             switch (currentAction)
             {
@@ -738,7 +759,8 @@ public class Main
                     break;
             }
         }
-        else if(action == "REDO")
+        //else if(action == "REDO")
+        else if(action.equals("REDO"))
         {
             int index = employees[100].idEmployee - 1;
             switch (currentAction)
@@ -777,7 +799,8 @@ public class Main
             String typeAgenda = input.nextLine();
             typeAgenda = typeAgenda.toUpperCase();
 
-            if(typeAgenda == "WEEKLY")
+            //if(typeAgenda == "WEEKLY")
+            if(typeAgenda.equals("WEEKLY"))
             {
                 System.out.println("Choose the day of the payment employee:");
                 System.out.println("1 - Monday | 2 - Tuesday | 3 - Wednesday | 4 - Thursday | 5 - Friday:");
@@ -793,7 +816,8 @@ public class Main
                     System.out.println("Not available AGENDA!");
                 }
             }
-            else if(typeAgenda == "MONTHLY")
+            //else if(typeAgenda == "MONTHLY")
+            else if(typeAgenda.equals("MONTHLY"))
             {
                 System.out.println("Employee payday in the month:");
                 chooseDay = input.nextInt();
@@ -808,7 +832,8 @@ public class Main
                     System.out.println("Not available AGENDA!");
                 }
             }
-            else if(typeAgenda == "BIWEEKLY")
+            //else if(typeAgenda == "BIWEEKLY")
+            else if(typeAgenda.equals("BIWEEKLY"))
             {
                 System.out.printf("Choose the day of the payment employee:\n");
                 System.out.printf("1 - Monday | 2 - Tuesday | 3 - Wednesday | 4 - Thursday | 5 - Friday:\n");
