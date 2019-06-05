@@ -60,7 +60,7 @@ public class Main
     {
         int op;
         Scanner input = new Scanner(System.in);
-        Employee[] employees = new Employee[101];
+        Employee[] employees = new Employee[100];
         employees[100] = new Employee();
 
         AgendaPayroll agenda = new AgendaPayroll();
