@@ -11,7 +11,9 @@
 
 public class HourlyEmployee extends Employee {
     private double wageSalary;// Salário horário
+    private double beginWordked, endWorked;// Horário de começo e fim do dia
     private double hoursWorked;// Horas trabalhadas
+    private double salaryDay;// Salário do dia (incluindo as foras extras
 
     // Configurando o salário do horista
     public double setWageSalary(double wage)
@@ -30,9 +32,44 @@ public class HourlyEmployee extends Employee {
         return wageSalary;
     }
 
+    // Configurando a hora de início
+    public double setBeginWorked(double bWorked)
+    {
+        if(bWorked < 0 || bWorked >= 24)
+        {
+            System.out.println("Invalid start time! Enter to number valid!");
+        }else{
+            this.beginWordked = bWorked;
+        }
+    }
+
+    // Retorna a hora de início do trabalho
+    public double getBeginWordked()
+    {
+        return beginWordked;
+    }
+
+    // Configurando a hora do fim
+    public double setEndWorked(double eWorked)
+    {
+        if(eWorked < 0 || eWorked >= 24)
+        {
+            System.out.println("Invalid end time! Enter to number valid!");
+        }else {
+            this.endWorked = eWorked;
+        }
+    }
+
+    // Retornando a hora do fim de trabalho
+    public double getEndWorked()
+    {
+        return endWorked;
+    }
+
     // Configurando o número de horas trabalhadas
     public double setHoursWorked(double hours)
     {
+        hours = getEndWorked() - getEndWorked();
         if(hours < 0.0 || hours > 24.00)
         {
             System.out.println("Invalid hour! Enter to number valid! (Hour > 0 OR Hour <= 24.00");
@@ -45,6 +82,23 @@ public class HourlyEmployee extends Employee {
     public double getHoursWorked()
     {
         return hoursWorked;
+    }
+
+    // Salário do dia
+    public double salaryDay()
+    {
+        if(getHoursWorked() <= 8)
+        {
+            this.salaryDay = getWageSalary()*getWageSalary();
+        }else{
+            this.salaryDay = (getHoursWorked() * getWageSalary() + (getHoursWorked() - 8)*1.5);
+        }
+    }
+
+    @Override
+    public double salariedEmplyee()
+    {
+
     }
 
 
