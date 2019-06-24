@@ -1,5 +1,5 @@
 /**!
- * @className Main.java
+ * @className payroll.employees.tools.Main.java
  * @author Edvonaldo Horácio (edvonaldohs@ic.ufal.br)
  * @brief
  * @version 0.1
@@ -8,7 +8,10 @@
  * @copyright Copyright (c) IC 2018
  *
  */
-import java.io.*
+
+package payroll.tools;
+
+import java.io.*;
 import java.util.*;
 
 public class Main
