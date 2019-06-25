@@ -21,14 +21,25 @@ public class CommissionEmployee extends SalariedEmployee {
 
     Scanner input = new Scanner(System.in);
 
+    // Construtor
+    public CommissionEmployee(int idEmployeeEmp)
+    {
+        super.setName();
+        super.setAddress();
+        super.setIdEmployee(idEmployeeEmp);
+        super.setTypeEmployee("COMMISSION");
+        super.setTypeOfPayment("DEPOSIT");
+        super.setTypeOfAgenda("BI-WEEKLY");
+    }
+
     // Configurando o resultado das vendas em um período
     public void setSalesResult(double salesResultEmp)
     {
-        System.out.println("Enter to sale result:");
+        System.out.println("Digite o resultado das vendas:");
         salesResultEmp = input.nextDouble();
         if(salesResultEmp < 0)
         {
-            System.out.println("Sales result less than 0.");
+            System.out.println("ERROR! Resultado das vendas menor que 0.");
         }else{
             this.salesResult = salesResultEmp;
         }
@@ -43,11 +54,11 @@ public class CommissionEmployee extends SalariedEmployee {
     // Configura o percentual de comissão
     public void setCommissionSale(double commissionSaleEmp)
     {
-        System.out.println("Enter to commission employee (Ex.: 20 is 20%):");
+        System.out.println("Digite a comissão do empregado (Ex.: 20 é 20%):");
         commissionSaleEmp = input.nextDouble();
         if(commissionSaleEmp < 0)
         {
-            System.out.println("Commission less than 0.");
+            System.out.println("ERROR! Comissãomenor que 0!");
         }else{
             this.commissionSale = commissionSaleEmp;
         }

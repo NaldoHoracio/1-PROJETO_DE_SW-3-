@@ -5,7 +5,7 @@
  * @version 0.1
  * @date 2019-06-19
  *
- * @copyright Copyright (c) IC 2018
+ * @copyright Copyright (c) IC 2019
  *
  */
 package payroll.employees;
@@ -18,12 +18,13 @@ public abstract class Employee {
     // Dados básicos do empregado
     private String name;// Nome
     private String address;// Endereço
-    private int idEmployee;// Número de identificação do empregado
-    private String typeEmployee;// HOURLY, COMISSION, SALARIED
+    private int idEmployee = 0;// Número de identificação do empregado
+    protected String typeEmployee;// HOURLY, COMISSION, SALARIED
 
     // Dados referente ao pagamento
     private String typeOfPayment;// POSTOFFICE, HANDS, DEPOSIT
     private String typeOfAgenda;// WEEKLY, BI-WEEKLY, MONTHLY
+    private double salaryTotal;// Salário total do empregado
 
     // Dados referente ao sindicato
     private int isSyndicalist;// Verifica se o empregado faz ou não parte do sindicato (1 - Sim | 0 - Não)
@@ -32,11 +33,10 @@ public abstract class Employee {
     private double othersFee;// Outras taxas e deduções do salário
 
     // Configura o nome
-    public void setName(String nameEmp)
+    public void setName()
     {
-        System.out.println("Enter name employee (Format: FIRST_NAME LAST_NAME)");
-        nameEmp = input.nextLine();
-        this.name = nameEmp;
+        System.out.println("Digite o nome do emprepgado (Formato: PRIMEIRO_NOME ULTIMO_NOME)");
+        this.name = input.nextLine();
     }
 
     // Retorna o nome
@@ -46,11 +46,10 @@ public abstract class Employee {
     }
 
     // Configura o endereço
-    public void setAddress(String addressEmp)
+    public void setAddress()
     {
-        System.out.println("Enter address of employee  (Format: LOCATION, NUMBER_HOUSE, CEP, CITY)");
-        addressEmp = input.nextLine();
-        this.address = addressEmp;
+        System.out.println("Digite o nome do empregado (Formato: Av./Logradouro, Nº da Residência, CEP, Cidade)");
+        this.address = input.nextLine();
     }
 
     // Retorna o endereço
@@ -59,10 +58,10 @@ public abstract class Employee {
         return address;
     }
 
-    public void setIdEmployee(int id)
+    public void setIdEmployee(int idEmployee)
     {
-        this.idEmployee = id % 1000000;
-        System.out.println("ID sucessfully configured!");
+        this.idEmployee = idEmployee++;
+        System.out.println("ID configurado com sucesso!");
     }
 
     // Retorna o ID do empregado
@@ -74,14 +73,15 @@ public abstract class Employee {
     // Configurando o typo de empregado
     public void setTypeEmployee(String typeEmp)
     {
-        System.out.println("Enter type of employee(HOURLY | SALARIED | COMMISSION):");
+        System.out.println("Digite o tipo de empregado (HOURLY | SALARIED | COMMISSION):");
         typeEmp = input.nextLine();
         typeEmp = typeEmp.toUpperCase();
         if(typeEmp.equals("HOURLY") || typeEmp.equals("SALARIED") || typeEmp.equals("COMMISSION"))
         {
             this.typeEmployee = typeEmp;
+            System.out.println("Tipo de empregado alterado com sucessos!");
         }else {
-            System.out.println("Employee type is not exists");
+            System.out.println("Tipo de empregado não existente!");
         }
     }
 
@@ -94,14 +94,15 @@ public abstract class Employee {
     // Configurando a forma de pagamento
     public void setTypeOfPayment(String typeOfPaymentEmp)
     {
-        System.out.println("Enter type of payment (POSTOFFICE | HANDS | DEPOSIT):");
-        typeOfPaymentEmp= input.nextLine();
+        System.out.println("Digite o tipo de pagamento (POSTOFFICE | HANDS | DEPOSIT):");
+        typeOfPaymentEmp = input.nextLine();
         typeOfPaymentEmp = typeOfPaymentEmp.toUpperCase();
         if(typeOfPaymentEmp.equals("POSTOFFICE") || typeOfPaymentEmp.equals("HANDS") || typeOfPaymentEmp.equals("DEPOSIT"))
         {
             this.typeOfPayment = typeOfPaymentEmp;
+            System.out.println("Tipo de pagamento alterado com sucesso!");
         }else {
-            System.out.println("Type of payment is not avaible!");
+            System.out.println("Tipo de pagamento não disponível!");
         }
     }
 
@@ -116,12 +117,13 @@ public abstract class Employee {
     {
         System.out.println("Enter type of payment (WEEKLY | BI-WEEKLY | MONTHLY):");
         typeOfAgendaEmp = input.nextLine();
-        typeOfAgendaEmp  = typeOfAgendaEmp .toUpperCase();
-        if(typeOfAgendaEmp .equals("WEEKLY") || typeOfAgendaEmp .equals("BI-WEEKLY") || typeOfAgendaEmp .equals("MONTHLY"))
+        typeOfAgendaEmp = typeOfAgendaEmp.toUpperCase();
+        if(typeOfAgendaEmp.equals("WEEKLY") || typeOfAgendaEmp.equals("BI-WEEKLY") || typeOfAgendaEmp.equals("MONTHLY"))
         {
             this.typeOfAgenda = typeOfAgendaEmp;
+            System.out.println("Agenda de pagamento alterada com sucesso!");
         }else {
-            System.out.println("Type of Agenda is not avaible!");
+            System.out.println("Tipo de pagamento não existe!");
         }
     }
 
@@ -134,7 +136,7 @@ public abstract class Employee {
     // Retorna se o empregado é sindicalista ou não
     public int isSyndicalistEmployee()
     {
-        System.out.println("Is syndicalist (1 - Yes | 0 - No):");
+        System.out.println("É sindicalista? (1 - Sim | 0 - Não):");
         this.isSyndicalist = input.nextInt();
         return (this.isSyndicalist == 1) ? 1:0;
     }
@@ -154,11 +156,11 @@ public abstract class Employee {
     // Configurando a taxa fixa paga pelo empregado
     public void getUnionFee(double fee)
     {
-        System.out.println("Enter to fee Syndicate:");
+        System.out.println("Dite a taxa do Sindicato:");
         fee = input.nextDouble();
         if(fee < 0)
         {
-            System.out.println("Value < 0!");
+            System.out.println("Valor menor que 0!");
         }else{
             this.unionFee = fee;
         }
@@ -173,11 +175,11 @@ public abstract class Employee {
     // Configurando outras taxas
     public void setOthersFee(double othersFeeEmp)
     {
-        System.out.println("Enter to others fee Syndicate:");
+        System.out.println("Digite o valor total das outras taxas do Sindicato:");
         othersFeeEmp = input.nextDouble();
         if(othersFeeEmp < 0)
         {
-            System.out.println("Value < 0!");
+            System.out.println("Valor menor que 0!");
         }else{
             this.othersFee = othersFeeEmp;
         }
@@ -193,7 +195,7 @@ public abstract class Employee {
     @Override
     public String toString()
     {
-        return String.format("payroll.employees.Employee %s has ID %d", getName(), getIdEmployee());
+        return String.format("Empregado %s" + getName(), " has ID %d" + getIdEmployee());
     }
 
     // Método abstrato que retornar o salário total do empregado de acordo com seu tipo

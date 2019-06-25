@@ -5,7 +5,7 @@
  * @version 0.1
  * @date 2019-06-19
  *
- * @copyright Copyright (c) IC 2018
+ * @copyright Copyright (c) IC 2019
  *
  */
 package payroll.employees;
@@ -18,15 +18,25 @@ public class SalariedEmployee extends Employee {
 
     Scanner input = new Scanner(System.in);
 
+    // Construtor
+    public SalariedEmployee()
+    {
+        super.setName();
+        super.setAddress();
+        super.setTypeEmployee("SALARIED");
+        super.setTypeOfPayment("DEPOSIT");
+        super.setTypeOfAgenda("MONTHLY");
+    }
+
     // Configura o salário mensal
     public void setSalaryMonthly(double salaryMonthlyEmp)
     {
-        System.out.println("Enter to monthly salary:");
+        System.out.println("Digite o salário mensal");
         salaryMonthlyEmp = input.nextDouble();
 
         if(salaryMonthlyEmp < 0)
         {
-            System.out.println("Error! Less value than 0!");
+            System.out.println("ERROR! Valor menor que 0!");
         }else{
             this.salaryMonthly = salaryMonthlyEmp;
         }
