@@ -19,14 +19,16 @@ public class Main
     public static void main(String[] args)
     {
         int op;// Opções
+
         Scanner input = new Scanner(System.in);
         do {
             menuPayroll();
+            System.out.println("Digite qual operação deseja fazer (0 - 10):");
             op = input.nextInt();
 
             if(op == 0)
             {
-                System.out.println("Thank you for using Horacio's Payroll System!");
+                System.out.println("Obrigado por usar Sistema de Folha de Pagamento EH!");
             }
             else if(op == 1)
             {
@@ -74,18 +76,19 @@ public class Main
 
     public static void menuPayroll()
     {
-        System.out.println("Wellcome to Horacio's Payroll System!");
-        System.out.println("Please choose your preferred option:");
-        System.out.println("1 - Add employee.");
-        System.out.println("2 - Remove employee.");
-        System.out.println("3 - Launch card point.");
-        System.out.println("4 - Launch sale result.");
-        System.out.println("5 - Launch service charge.");
-        System.out.println("6 - Alter info employee.");
-        System.out.println("7 - Run Paylroll today.");
-        System.out.println("8 - Undo/Redo function.");
-        System.out.println("9 - Payment agenda run.");
-        System.out.println("10 - Create news payment agendas.");
-        System.out.println("0 - Exit to Payroll System.");
+        System.out.println("Bem-vindo ao Sistema de Folha de Pagamento EH!");
+        System.out.println("Por favor, escolha a operação desejada:");
+        System.out.println("1 - Adicionar empregado.");
+        System.out.println("2 - Remover empregado.");
+        System.out.println("3 - Lançar cartão de ponto.");
+        System.out.println("4 - Lançar resultado da venda.");
+        System.out.println("5 - Lançar uma taxa de serviço.");
+        System.out.println("6 - Alterar informações do empregado.");
+        System.out.println("7 - Executar a Folha de Pagamento para hoje.");
+        System.out.println("8 - Função Undo/Redo.");
+        System.out.println("9 - Executar Agenda de Pagamento.");
+        System.out.println("10 - Criar novas Agendas de Pagamento.");
+        System.out.println("0 - Sair do Sistema de Folha de Pagamento.");
+        System.out.println("");
     }
 }

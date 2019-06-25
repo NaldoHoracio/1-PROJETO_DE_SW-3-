@@ -24,7 +24,7 @@ public abstract class Employee {
     // Dados referente ao pagamento
     private String typeOfPayment;// POSTOFFICE, HANDS, DEPOSIT
     private String typeOfAgenda;// WEEKLY, BI-WEEKLY, MONTHLY
-    private double salaryTotal;// Salário total do empregado
+    private double salaryMonthly;// Salário mensal
 
     // Dados referente ao sindicato
     private int isSyndicalist;// Verifica se o empregado faz ou não parte do sindicato (1 - Sim | 0 - Não)
@@ -60,7 +60,7 @@ public abstract class Employee {
 
     public void setIdEmployee(int idEmployee)
     {
-        this.idEmployee = idEmployee++;
+        this.idEmployee = idEmployee;
         System.out.println("ID configurado com sucesso!");
     }
 
@@ -127,6 +127,26 @@ public abstract class Employee {
         }
     }
 
+    // Configurando o salário mensal
+    public void setSalaryMonthly(double salaryMonthlyEmp)
+    {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Digite o salário mensal:");
+        salaryMonthlyEmp = input.nextDouble();
+        if(salaryMonthlyEmp < 0)
+        {
+            System.out.println("ERROR! Salário inválido! Valor menor que 0!");
+        }else{
+            this.salaryMonthly = salaryMonthlyEmp;
+        }
+    }
+
+    // Retorna o salário mensal
+    public double getSalaryMonthly()
+    {
+        return salaryMonthly;
+    }
+
     // Retorna o tipo de Agenda
     public String getTypeOfAgenda()
     {
@@ -154,7 +174,7 @@ public abstract class Employee {
     }
 
     // Configurando a taxa fixa paga pelo empregado
-    public void getUnionFee(double fee)
+    public void setUnionFee(double fee)
     {
         System.out.println("Dite a taxa do Sindicato:");
         fee = input.nextDouble();

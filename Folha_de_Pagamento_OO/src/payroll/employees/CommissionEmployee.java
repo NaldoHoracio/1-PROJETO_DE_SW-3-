@@ -13,7 +13,7 @@ package payroll.employees;
 
 import java.util.Scanner;
 
-public class CommissionEmployee extends SalariedEmployee {
+public class CommissionEmployee extends Employee {
     private double salesResult;// Resultado das vendas
     private double commissionSale;// Comissão de vendas
     private double salaryTotal;// Salário total do empregado
