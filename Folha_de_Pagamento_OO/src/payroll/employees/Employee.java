@@ -11,6 +11,8 @@
 package payroll.employees;
 
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public abstract class Employee {
     Scanner input = new Scanner(System.in);
@@ -19,7 +21,10 @@ public abstract class Employee {
     private String name;// Nome
     private String address;// Endereço
     private int idEmployee = 0;// Número de identificação do empregado
-    protected String typeEmployee;// HOURLY, COMISSION, SALARIED
+    private String typeEmployee;// HOURLY, COMISSION, SALARIED
+    private LocalDate dataAdmission;// Data de admissão do empregado
+    private LocalDate dateLastPayment;// Data do último pagamento
+
 
     // Dados referente ao pagamento
     private String typeOfPayment;// POSTOFFICE, HANDS, DEPOSIT
@@ -38,7 +43,6 @@ public abstract class Employee {
         System.out.println("Digite o nome do emprepgado (Formato: PRIMEIRO_NOME ULTIMO_NOME)");
         this.name = input.nextLine();
     }
-
     // Retorna o nome
     public String getName()
     {
@@ -51,7 +55,6 @@ public abstract class Employee {
         System.out.println("Digite o nome do empregado (Formato: Av./Logradouro, Nº da Residência, CEP, Cidade)");
         this.address = input.nextLine();
     }
-
     // Retorna o endereço
     public String getAddress()
     {
@@ -63,7 +66,6 @@ public abstract class Employee {
         this.idEmployee = idEmployee;
         System.out.println("ID configurado com sucesso!");
     }
-
     // Retorna o ID do empregado
     public int getIdEmployee()
     {
@@ -79,18 +81,43 @@ public abstract class Employee {
         if(typeEmp.equals("HOURLY") || typeEmp.equals("SALARIED") || typeEmp.equals("COMMISSION"))
         {
             this.typeEmployee = typeEmp;
-            System.out.println("Tipo de empregado alterado com sucessos!");
+            System.out.println("Tipo de empregado alterado com sucesso!");
         }else {
             System.out.println("Tipo de empregado não existente!");
         }
     }
-
     // Retornando o tipo de empregado
     public String getTypeEmployee()
     {
         return typeEmployee;
     }
 
+    // Configurando a data de adminissão do empregado
+    public void setDataAdmission(String dataAdmissionEmp)
+    {
+        System.out.println("Digite a data de admissão do empregado (Formato: dd/mm/yyyy):");
+        dataAdmissionEmp = input.nextLine();
+        DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.dataAdmission = LocalDate.parse(dataAdmissionEmp, formatDate);
+    }
+    // Retorna data da admissão do empregado
+    public LocalDate getDataAdmission()
+    {
+        return dataAdmission;
+    }
+
+    // Configura a última data de pagamento
+    public void setDateLastPayment(String dateLastPaymentEmp)
+    {
+        dateLastPaymentEmp = input.nextLine();
+        DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.dateLastPayment = LocalDate.parse(dateLastPaymentEmp, formatDate);
+    }
+    // Retorna a última data de pagamento
+    public LocalDate getDateLastPayment()
+    {
+        return dateLastPayment;
+    }
     // Configurando a forma de pagamento
     public void setTypeOfPayment(String typeOfPaymentEmp)
     {
@@ -105,7 +132,6 @@ public abstract class Employee {
             System.out.println("Tipo de pagamento não disponível!");
         }
     }
-
     // Retorna o método de pagamento
     public String getTypeOfPayment()
     {

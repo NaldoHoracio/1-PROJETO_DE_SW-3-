@@ -11,17 +11,36 @@
 
 package payroll.tools;
 
-import java.io.*;
-import java.util.*;
+import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 public class Main
 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         int op;// Opções
 
         Scanner input = new Scanner(System.in);
-        do {
+        String p1, p2;
+        System.out.println("Digite a data e a hora (dd/mm/yyyy hh:mm):");
+        p1 = input.nextLine();
+        System.out.println("Digite a data 2 e a hora 2 (dd/mm/yyyy hh:mm):");
+        p2 = input.nextLine();
+
+        // Formatando a entrada
+        DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime point1 = LocalDateTime.parse(p1, formatterDate);
+        LocalDateTime point2 = LocalDateTime.parse(p2, formatterDate);
+
+
+        System.out.println("Data 1: "+point1.getDayOfMonth()+point1.getMonth()+point1.getYear());
+        System.out.println("Data 2: "+point2.getDayOfMonth()+point2.getMonth()+point2.getYear());
+        int diff = point2.getHour() - point1.getHour();
+        System.out.println("Diff hour 1 - hour 2:" +diff);
+
+        /*do {
             menuPayroll();
             System.out.println("Digite qual operação deseja fazer (0 - 10):");
             op = input.nextInt();
@@ -71,7 +90,7 @@ public class Main
                 System.out.println("Option in the implementation phase!");
             }
             System.out.printf("\n\n");
-        }while(op != 0);
+        }while(op != 0);*/
     }
 
     public static void menuPayroll()
