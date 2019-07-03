@@ -10,13 +10,17 @@
  */
 package payroll.tools;
 
+import payroll.employees.HourlyEmployee;
+
+import java.time.LocalDateTime;
 import java.util.Scanner;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class CardPoint {
-    private LocalDate hourIn;// Hora de entrada
-    private LocalDate hourOut;// Hora de saída
+    private double hourIn;// Hora de entrada
+    private double hourOut;// Hora de saída
 
     public void setHourIn(String hourInEmp)
     {
@@ -24,6 +28,27 @@ public class CardPoint {
         System.out.println("Submeta o cartão de ponto com a data e a hora de entrada (dd/hh/yyyy hh:mm):");
         hourInEmp = input.nextLine();
         DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        this.hourIn = LocalDate.parse(hourInEmp, formatDate);
+        LocalDateTime hourInLDT = LocalDateTime.parse(hourInEmp, formatterDate);
+        this.hourIn = hourInLDT.getHour();
+    }
+
+    public double getHourIn()
+    {
+        return hourIn;
+    }
+
+    public void setHourOut(String hourOutEmp)
+    {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Submeta o cartão de ponto com a data e a hora de saída (dd/hh/yyyy hh:mm):");
+        hourOutEmp = input.nextLine();
+        DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime hourOutLDT = LocalDateTime.parse(hourOutEmp, formatterDate);
+        this.hourOut = hourOutLDT.getHour();
+    }
+
+    public double getHourOut()
+    {
+        return hourOut;
     }
 }

@@ -241,7 +241,7 @@ public abstract class Employee {
     @Override
     public String toString()
     {
-        return String.format("Empregado %s" + getName(), " has ID %d" + getIdEmployee());
+        return String.format("Empregado %s" + getName(), " tem ID %d" + getIdEmployee());
     }
 
     // Método abstrato que retornar o salário total do empregado de acordo com seu tipo

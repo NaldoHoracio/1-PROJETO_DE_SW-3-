@@ -76,7 +76,7 @@ public class CommissionEmployee extends Employee {
     {
         if(isSyndicalistEmployee() == 1)
         {
-            salaryTotal = (getSalaryMonthly()/2 + getSalesResult()*getCommissionSale() - getUnionFee()/2 + getOthersFee()/2);
+            salaryTotal = (getSalaryMonthly()/2 + getSalesResult()*getCommissionSale() - getUnionFee()/2 - getOthersFee()/2);
         }else{
             salaryTotal= (getSalaryMonthly()/2 + getSalesResult()*getCommissionSale());
         }

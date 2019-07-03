@@ -34,7 +34,7 @@ public class SalariedEmployee extends Employee {
         {
             salaryTotal = getSalaryMonthly() - getUnionFee() - getOthersFee();
         }else{
-            salaryTotal= getSalaryMonthly();
+            salaryTotal = getSalaryMonthly();
         }
         return salaryTotal;
     }

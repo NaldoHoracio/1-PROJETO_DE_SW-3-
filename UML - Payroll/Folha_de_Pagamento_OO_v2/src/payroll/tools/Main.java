@@ -37,8 +37,8 @@ public class Main
 
         System.out.println("Data 1: "+point1.getDayOfMonth()+point1.getMonth()+point1.getYear());
         System.out.println("Data 2: "+point2.getDayOfMonth()+point2.getMonth()+point2.getYear());
-        int diff = point2.getHour() - point1.getHour();
-        System.out.println("Diff hour 1 - hour 2:" +diff);
+        double diff = point2.getHour() - point1.getHour();
+        System.out.println("Diff:" +diff);
 
         /*do {
             menuPayroll();

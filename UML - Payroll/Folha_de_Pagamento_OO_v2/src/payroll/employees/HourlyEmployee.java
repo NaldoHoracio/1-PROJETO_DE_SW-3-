@@ -10,10 +10,13 @@
  */
 package payroll.employees;
 
+import payroll.tools.CardPoint;
+
 public class HourlyEmployee extends Employee {
     private double wageSalary;// Salário horário
     private double hoursWorked;// Horas trabalhadas
     private double partialSalary = 0;// Salario do dia (incluindo as horas extras)
+    private CardPoint cardPoint;
 
     // Construtor
     public HourlyEmployee(int idEmployeeEmp)
@@ -46,7 +49,7 @@ public class HourlyEmployee extends Employee {
     // Configurando o número de horas trabalhadas
     public void setHoursWorked(double hours)
     {
-
+        hours = cardPoint.getHourOut() - cardPoint.getHourIn();
         if(hours < 0.0 || hours > 24.00)
         {
             System.out.println("Hora inválida! Entre com um valor maior que 0 e menor que 24!");
