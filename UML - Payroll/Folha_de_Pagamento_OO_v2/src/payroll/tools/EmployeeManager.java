@@ -11,10 +11,10 @@
 
 package payroll.tools;
 
-import payroll.employees.CommissionEmployee;
 import payroll.employees.Employee;
 import payroll.employees.HourlyEmployee;
 import payroll.employees.SalariedEmployee;
+import payroll.employees.CommissionEmployee;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -31,23 +31,12 @@ public class EmployeeManager {
         {
             System.out.println("Não há funcionários cadastrados!");
         }else{
-            System.out.println("Empregados cadastrados (Nome e ID)");
+            System.out.println("Empregados cadastrados (Nome e ID):");
             for(int i = 0; i < employees.size(); ++i)
             {
                 System.out.println("" +employees.toString());
             }
         }
-    }
-
-    public static void searchEmployee(ArrayList<Employee> employees)
-    {
-        if(employees.isEmpty())
-        {
-            System.out.println("Não há funcionários cadastrados!");
-        }else {
-            printEmployee(employees);
-        }
-
     }
 
     public void addEmployee()
@@ -85,6 +74,21 @@ public class EmployeeManager {
                 break;
              default:
                  System.out.println("Este tipo de empregado não existe!");
+        }
+    }
+
+    public void removeEployee()
+    {
+        printEmployee(employees);
+        System.out.println("Digite o ID do empregado que você vai remover:");
+        int idEmp = input.nextInt();
+
+        for (int i = 0; i < employees.size(); ++i)
+        {
+            if(employees.get(i).getIdEmployee() == idEmp)
+            {
+                employees.remove(i);
+            }
         }
     }
 }

@@ -69,7 +69,7 @@ public abstract class Employee {
     // Retorna o ID do empregado
     public int getIdEmployee()
     {
-        return idEmployee;
+        return this.idEmployee;
     }
 
     // Configurando o typo de empregado
@@ -190,7 +190,7 @@ public abstract class Employee {
     // Configurando o id do funcionário no sindicato
     public void setIdSyndicalist(int idSyndicalistEmp)
     {
-        idSyndicalistEmp = 1000000 - getIdEmployee();
+        idSyndicalistEmp = getIdEmployee()*10;
         this.idSyndicalist = idSyndicalistEmp;
     }
     // Retorna o id do funcionário no sindicato
