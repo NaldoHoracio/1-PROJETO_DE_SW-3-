@@ -1,5 +1,5 @@
 /**!
- * @className Main.java
+ * @className tools.Main.java
  * @author Edvonaldo Horácio (edvonaldohs@ic.ufal.br)
  * @brief
  * @version 0.1
@@ -8,13 +8,13 @@
  * @copyright Copyright (c) IC 2019
  *
  */
-import tools.ManagementFunctions;
+package tools;
 
 import java.util.Scanner;
 
 public class Main {
 
-    private static ManagementFunctions payroll = new ManagementFunctions();
+    private static Functions payrollSystem = new Functions(true);
 
     public static void main(String[] args)
     {
@@ -30,37 +30,42 @@ public class Main {
             if(op == 0)
             {
                 System.out.println("Obrigado por usar Sistema de Folha de Pagamento EH!");
-                continueVar = true;
+                continueVar = false;
             }
             else if(op == 1)
             {
-                System.out.println("Função de adicionar um empregado:\n");
-                payroll.addEmployee();
+                System.out.println("Função de ADICIONAR um empregado:");
+                payrollSystem.addEmployee();
                 continueVar = true;
             }
             else if(op == 2)
             {
-                System.out.println("removeEmployee(employees,input);");
+                System.out.println("Função de REMOVER um empregado:");
+                payrollSystem.removeEmployee();
                 continueVar = true;
             }
             else if(op == 3)
             {
-                System.out.println("launchTodayCardPoint(employees,input);");
+                System.out.println("Função de LANÇAR UM CARTÃO DE PONTO de um empregado:");
+                payrollSystem.launchCardPoint();
                 continueVar = true;
             }
             else if(op == 4)
             {
-                System.out.println("saleResult(employees,input);");
+                System.out.println("Função de LANÇAR RESULTADO DE VENDAS de um empregado:");
+                payrollSystem.addSalesResult();
                 continueVar = true;
             }
             else if(op == 5)
             {
-                System.out.println("othersFeeEmployee(employees,input);");
+                System.out.println("Função de LANÇAR UMA OUTRA TAXA DE SERVIÇO (além da taxa SINDICAL) de um empregado:");
+                payrollSystem.addServiceFee();
                 continueVar = true;
             }
             else if(op == 6)
             {
-                System.out.println("changeDataEmployee(employees,input);");
+                System.out.println("Função ALTERAR DADOS de um empregado:");
+                payrollSystem.changeEmployeeData();
                 continueVar = true;
             }
             else if(op == 7)
@@ -86,7 +91,7 @@ public class Main {
             else if(op == 11)
             {
                 System.out.println("Lista dos empregados cadastrados:\n");
-                payroll.printListEmployee();
+                payrollSystem.printListEmployee();
                 continueVar = true;
             }
             else{
