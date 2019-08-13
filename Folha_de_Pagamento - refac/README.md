@@ -8,7 +8,7 @@ Funções que o sistema deve ter:
 3. Lançar um cartão de ponto :heavy_check_mark:
 4. Lançar um resultado venda :heavy_check_mark:
 5. Lançar uma taxa de serviço :heavy_check_mark:
-6. Alterar detalhes de um empregado :x:
+6. Alterar detalhes de um empregado :heavy_check_mark:
 7. Rodar a folha de pagamento para hoje :x: 
 8. Undo / Redo :x:
 9. Agenda de Pagamento :x:
