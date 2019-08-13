@@ -1,5 +1,4 @@
-# 1-PROJETO_DE_SW-3-
-Projeto Folha de Pagamento Refatorado
+#Projeto Folha de Pagamento Refatorado
 
 Funções que o sistema deve ter:
 
