@@ -1,4 +1,4 @@
-#Projeto Folha de Pagamento Refatorado
+## Projeto Folha de Pagamento Refatorado
 
 Funções que o sistema deve ter:
 
