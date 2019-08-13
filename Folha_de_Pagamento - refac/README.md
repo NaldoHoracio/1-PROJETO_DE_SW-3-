@@ -3,8 +3,8 @@ Projeto Folha de Pagamento Refatorado
 
 Funções que o sistema deve ter:
 
-1. Adição de um empregado :white_check_mark:
-2. Remoção de um empregado :x:
+1. Adição de um empregado :heavy_check_mark:
+2. Remoção de um empregado :heavy_check_mark:
 3. Lançar um cartão de ponto :x:
 4. Lançar um resultado venda :x:
 5. Lançar uma taxa de serviço :x:
