@@ -76,23 +76,32 @@ public class Main {
             }
             else if(op == 8)
             {
-                System.out.println("undoRedo(employees,currentAction, currentLastAction, input);");
+                System.out.println("Função UNDO/REDO:");
+                payrollSystem.undoRedo();
                 continueVar = true;
             }
             else if(op == 9)
             {
-                System.out.println("alterAgendaPayroll(employees,agenda,input);");
+                System.out.println("Função ALTERAR agenda de pagamento:");
+                payrollSystem.changePaymentAgenda();
                 continueVar = true;
             }
             else if(op == 10)
             {
-                System.out.println("Option in the implementation phase!");
+                System.out.println("Função CRIAR NOVAS AGENDAS DE PAGAMENTO!");
+                payrollSystem.createNewPaymentAgenda();
                 continueVar = true;
             }
             else if(op == 11)
             {
                 System.out.println("Lista dos empregados cadastrados:\n");
                 payrollSystem.printListEmployee();
+                continueVar = true;
+            }
+            else if(op == 12)
+            {
+                System.out.println("Lista de NOVAS AGENDAS:\n");
+                payrollSystem.printListNewAgendas();
                 continueVar = true;
             }
             else{
@@ -116,6 +125,7 @@ public class Main {
         System.out.println("9 - Executar Agenda de Pagamento.");
         System.out.println("10 - Criar novas Agendas de Pagamento.");
         System.out.println("11 - Imprimir empregados cadastrados.");
-        System.out.println("Por favor, escolha a operação desejada (0 - 11):");
+        System.out.println("12 - Imprimir novas agendas cadastradas.");
+        System.out.println("Por favor, escolha a operação desejada (0 - 12):");
     }
 }

@@ -46,6 +46,11 @@ public class HourlyEmployee extends Employee{
         }
     }
 
+    public double getWageSalary()
+    {
+        return this.wageSalary;
+    }
+
     // Configurando salário do dia para 0
     public void setSalaryDay()
     {
@@ -63,6 +68,11 @@ public class HourlyEmployee extends Employee{
             this.salaryDay = 8 * this.wageSalary + (hoursWorked - 8) * (1.5 * this.wageSalary);
         }
         System.out.println("Salário do dia: " + this.salaryDay);
+    }
+
+    public double getSalaryDay()
+    {
+        return this.salaryDay;
     }
 
     // Configurando o salário do empregado

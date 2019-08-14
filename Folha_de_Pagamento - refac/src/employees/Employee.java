@@ -46,10 +46,35 @@ public abstract class Employee {
         System.out.println("Digite o nome do empregado (PrimeiroNome UltimoNome):");
         this.name = input.nextLine();
     }
-    // Retorna o nome
+
     public String getName()
     {
         return this.name;
+    }
+
+    public String getPublicPlace()
+    {
+        return this.publicPlace;
+    }
+
+    public String getNumHouse()
+    {
+        return this.numHouse;
+    }
+
+    public String getCepPlace()
+    {
+        return this.cepPlace;
+    }
+
+    public String getCity()
+    {
+        return this.city;
+    }
+
+    public String getCountry()
+    {
+        return this.country;
     }
 
     // Configura o endereço
