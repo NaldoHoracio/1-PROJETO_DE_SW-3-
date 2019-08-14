@@ -10,8 +10,8 @@ Funções que o sistema deve ter:
 6. Alterar detalhes de um empregado :heavy_check_mark:
 7. Rodar a folha de pagamento para hoje :heavy_check_mark: 
 8. Undo / Redo :x:
-9. Agenda de Pagamento :x:
-10. Criação de Novas Agendas de Pagamento :x:
+9. Agenda de Pagamento :heavy_check_mark:
+10. Criação de Novas Agendas de Pagamento :heavy_check_mark:
 
 Refatoramento
 
