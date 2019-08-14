@@ -11,151 +11,173 @@
 package payroll.employees;
 
 import java.util.Scanner;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public abstract class Employee {
-    Scanner input = new Scanner(System.in);
 
     // Dados básicos do empregado
     private String name;// Nome
-    private String address;// Endereço
-    private int idEmployee = 0;// Número de identificação do empregado
-    private String typeEmployee;// HOURLY, COMISSION, SALARIED
-    private LocalDate dataAdmission;// Data de admissão do empregado
-    private LocalDate dateLastPayment;// Data do último pagamento
+    private String publicPlace;// Logradouro
+    private String numHouse;// Número da residência
+    private String cepPlace;
+    private String city;
+    private String country;
+    private int    idEmployee = 0;// Número de identificação do empregado
+    private String typeEmployee;// HORISTA, COMISSIONADO, ASSALARIADO
 
 
     // Dados referente ao pagamento
-    private String typeOfPayment;// POSTOFFICE, HANDS, DEPOSIT
-    private String typeOfAgenda;// WEEKLY, BI-WEEKLY, MONTHLY
-    private double salaryMonthly;// Salário mensal
+    private String typeOfPayment;// CORREIOS, EM MAOS, DEPOSITO
+    private String typeOfAgenda;// SEMANAL, BISSEMANAL, MENSAL
+    private int dataPay;// Data do pagamento do funcionário
+    private int dayWeeklyPay;// Dia da semana do pagamento
+    protected double salaryMonthly;// Salário mensal
+    protected double liquidSalary = 0;// Salário líquido
 
     // Dados referente ao sindicato
-    private int isSyndicalist;// Verifica se o empregado faz ou não parte do sindicato (1 - Sim | 0 - Não)
-    private int idSyndicalist;// Id do empregado no sindicato
-    private double unionFee;// Taxa do sindicato, caso o empregado faça parte
-    private double othersFee;// Outras taxas e deduções do salário
+    protected boolean isSyndicalist = false;// Verifica se o empregado faz ou não parte do sindicato (1 - Sim | 0 - Não)
+    private int idSyndicalist = -1;// Id do empregado no sindicato
+    private double unionFee = 0;// Taxa do sindicato, caso o empregado faça parte
+    private double othersFee = 0;// Outras taxas e deduções do salário
 
     // Configura o nome
     public void setName()
     {
-        System.out.println("Digite o nome do emprepgado (Formato: PRIMEIRO_NOME ULTIMO_NOME)");
+        Scanner input = new Scanner(System.in);
+        System.out.println("Digite o nome do empregado (PrimeiroNome UltimoNome):");
         this.name = input.nextLine();
     }
-    // Retorna o nome
+
     public String getName()
     {
-        return name;
+        return this.name;
+    }
+
+    public String getPublicPlace()
+    {
+        return this.publicPlace;
+    }
+
+    public String getNumHouse()
+    {
+        return this.numHouse;
+    }
+
+    public String getCepPlace()
+    {
+        return this.cepPlace;
+    }
+
+    public String getCity()
+    {
+        return this.city;
+    }
+
+    public String getCountry()
+    {
+        return this.country;
     }
 
     // Configura o endereço
     public void setAddress()
     {
-        System.out.println("Digite o nome do empregado (Formato: Av./Logradouro, Nº da Residência, CEP, Cidade)");
-        this.address = input.nextLine();
-    }
-    // Retorna o endereço
-    public String getAddress()
-    {
-        return address;
+        Scanner input = new Scanner(System.in);
+        /*System.out.println("Digite o logradouro do Empregado (Avenida, Loteamento, Bloco...):");
+        this.publicPlace = input.nextLine();*/
+
+        System.out.println("Digite o número da residência:");
+        this.numHouse = input.nextLine();
+
+        /*System.out.println("Digite o CEP: (XXX)");
+        this.cepPlace = input.nextLine();
+
+        System.out.println("Digite a cidade:");
+        this.city = input.nextLine();
+
+        System.out.println("Digite o estado:");
+        this.country = input.nextLine();*/
     }
 
+    // Retorna a situação sindical
+    public boolean getIsSyndicalist()
+    {
+        return this.isSyndicalist;
+    }
+
+    // configura o ID do empregado
     public void setIdEmployee(int idEmployee)
     {
         this.idEmployee = idEmployee;
-        System.out.println("ID configurado com sucesso!");
     }
+
     // Retorna o ID do empregado
     public int getIdEmployee()
     {
-        return idEmployee;
+        return this.idEmployee;
     }
 
     // Configurando o typo de empregado
     public void setTypeEmployee(String typeEmp)
     {
-        System.out.println("Digite o tipo de empregado (HOURLY | SALARIED | COMMISSION):");
-        typeEmp = input.nextLine();
-        typeEmp = typeEmp.toUpperCase();
-        if(typeEmp.equals("HOURLY") || typeEmp.equals("SALARIED") || typeEmp.equals("COMMISSION"))
-        {
-            this.typeEmployee = typeEmp;
-            System.out.println("Tipo de empregado alterado com sucesso!");
-        }else {
-            System.out.println("Tipo de empregado não existente!");
-        }
+        this.typeEmployee = typeEmp;
     }
     // Retornando o tipo de empregado
     public String getTypeEmployee()
     {
-        return typeEmployee;
+        return this.typeEmployee;
     }
 
-    // Configurando a data de adminissão do empregado
-    public void setDataAdmission(String dataAdmissionEmp)
-    {
-        System.out.println("Digite a data de admissão do empregado (Formato: dd/mm/yyyy):");
-        dataAdmissionEmp = input.nextLine();
-        DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        this.dataAdmission = LocalDate.parse(dataAdmissionEmp, formatDate);
-    }
-    // Retorna data da admissão do empregado
-    public LocalDate getDataAdmission()
-    {
-        return dataAdmission;
-    }
-
-    // Configura a última data de pagamento
-    public void setDateLastPayment(String dateLastPaymentEmp)
-    {
-        dateLastPaymentEmp = input.nextLine();
-        DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        this.dateLastPayment = LocalDate.parse(dateLastPaymentEmp, formatDate);
-    }
-    // Retorna a última data de pagamento
-    public LocalDate getDateLastPayment()
-    {
-        return dateLastPayment;
-    }
     // Configurando a forma de pagamento
     public void setTypeOfPayment(String typeOfPaymentEmp)
     {
-        System.out.println("Digite o tipo de pagamento (POSTOFFICE | HANDS | DEPOSIT):");
-        typeOfPaymentEmp = input.nextLine();
-        typeOfPaymentEmp = typeOfPaymentEmp.toUpperCase();
-        if(typeOfPaymentEmp.equals("POSTOFFICE") || typeOfPaymentEmp.equals("HANDS") || typeOfPaymentEmp.equals("DEPOSIT"))
-        {
-            this.typeOfPayment = typeOfPaymentEmp;
-            System.out.println("Tipo de pagamento alterado com sucesso!");
-        }else {
-            System.out.println("Tipo de pagamento não disponível!");
-        }
+        this.typeOfPayment = typeOfPaymentEmp;
     }
+
     // Retorna o método de pagamento
     public String getTypeOfPayment()
     {
-        return typeOfPayment;
+        return this.typeOfPayment;
     }
 
     // Configurando o tipo de Agenda
     public void setTypeOfAgenda(String typeOfAgendaEmp)
     {
-        System.out.println("Enter type of payment (WEEKLY | BI-WEEKLY | MONTHLY):");
-        typeOfAgendaEmp = input.nextLine();
-        typeOfAgendaEmp = typeOfAgendaEmp.toUpperCase();
-        if(typeOfAgendaEmp.equals("WEEKLY") || typeOfAgendaEmp.equals("BI-WEEKLY") || typeOfAgendaEmp.equals("MONTHLY"))
-        {
-            this.typeOfAgenda = typeOfAgendaEmp;
-            System.out.println("Agenda de pagamento alterada com sucesso!");
-        }else {
-            System.out.println("Tipo de pagamento não existe!");
-        }
+        this.typeOfAgenda = typeOfAgendaEmp;
+    }
+
+    // Retorna o tipo de agenda
+    public String getTypeOfAgenda()
+    {
+        return this.typeOfAgenda;
+    }
+
+    // Configurando a data do pagamento
+    public void setDataPay(int dataPayEmp)
+    {
+        this.dataPay = dataPayEmp;
+    }
+
+    // Retorna a data do pagamento
+    public int getDataPay()
+    {
+        return this.dataPay;
+    }
+
+    // Configurando o dia da semana do pagamento
+    public void setDayWeeklyPay(int dayWeeklyPay)
+    {
+        this.dayWeeklyPay = dayWeeklyPay;
+    }
+
+    // Retornando o dia da semana do pagamento
+    public int getDayWeeklyPay()
+    {
+        return this.dayWeeklyPay;
     }
 
     // Configurando o salário mensal
-    public void setSalaryMonthly(double salaryMonthlyEmp)
+    public void setSalaryMonthly()
     {
+        double salaryMonthlyEmp;
         Scanner input = new Scanner(System.in);
         System.out.println("Digite o salário mensal:");
         salaryMonthlyEmp = input.nextDouble();
@@ -170,38 +192,62 @@ public abstract class Employee {
     // Retorna o salário mensal
     public double getSalaryMonthly()
     {
-        return salaryMonthly;
+        return this.salaryMonthly;
     }
 
-    // Retorna o tipo de Agenda
-    public String getTypeOfAgenda()
+    // Configurando a sindicalização do empregado
+    public void setMembershipEmployee(int idEmp)
     {
-        return typeOfAgenda;
+        Scanner input = new Scanner(System.in);
+
+        if(this.isSyndicalist == true)// Se ele é vinculado, desvinculamos
+        {
+            System.out.println("Situação atual do empregado junto ao sindicato: FILIADO");
+            this.isSyndicalist = false;
+            this.idSyndicalist = -1;
+            this.unionFee = 0;
+            this.othersFee = 0;
+            System.out.println("Situação do empregado junto ao sindicato alterada: NAO FILIADO");
+        }else{
+            System.out.println("Situação atual do empregado junto ao sindicato: NÃO FILIADO");
+            this.isSyndicalist = true;
+            setIdSyndicalist(idEmp);
+            setUnionFee(idEmp);
+            setOthersFee();
+            System.out.println("Situação do empregado junto ao sindicato alterada: FILIADO");
+        }
     }
 
-    // Retorna se o empregado é sindicalista ou não
-    public int isSyndicalistEmployee()
-    {
-        System.out.println("É sindicalista? (1 - Sim | 0 - Não):");
-        this.isSyndicalist = input.nextInt();
-        return (this.isSyndicalist == 1) ? 1:0;
+    public boolean isSyndicalist() {
+        return this.isSyndicalist;
     }
 
     // Configurando o id do funcionário no sindicato
-    public void setIdSyndicalist(int idSyndicalistEmp)
+    public void setIdSyndicalist(int idEmp)
     {
-        idSyndicalistEmp = 1000000 - getIdEmployee();
-        this.idSyndicalist = idSyndicalistEmp;
+        idEmp = this.idEmployee*10;
+        this.idSyndicalist = idEmp;
     }
+
+    public void setIdSyndicalist()
+    {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Digite o novo número do sindicato:");
+        int newIdSynd = input.nextInt();
+        this.idSyndicalist = newIdSynd;
+    }
+
     // Retorna o id do funcionário no sindicato
     public int getIdSyndicalist()
     {
-        return idSyndicalist;
+        return this.idSyndicalist;
     }
 
     // Configurando a taxa fixa paga pelo empregado
-    public void setUnionFee(double fee)
+    public void setUnionFee(int idEmp)
     {
+        double fee;
+        Scanner input = new Scanner(System.in);
         System.out.println("Dite a taxa do Sindicato:");
         fee = input.nextDouble();
         if(fee < 0)
@@ -215,12 +261,14 @@ public abstract class Employee {
     // Retorna a taxa do sindicato paga pelo empregado, caso o mesmo faça para do Sindicato
     public double getUnionFee()
     {
-        return unionFee;
+        return this.unionFee;
     }
 
     // Configurando outras taxas
-    public void setOthersFee(double othersFeeEmp)
+    public void setOthersFee()
     {
+        double othersFeeEmp;
+        Scanner input = new Scanner(System.in);
         System.out.println("Digite o valor total das outras taxas do Sindicato:");
         othersFeeEmp = input.nextDouble();
         if(othersFeeEmp < 0)
@@ -234,16 +282,22 @@ public abstract class Employee {
     // Retorna outras taxas descontadas do salário do empregado
     public double getOthersFee()
     {
-        return othersFee;
+        return this.othersFee;
     }
 
     // Sobrescrevendo o método toString
     @Override
     public String toString()
     {
-        return String.format("Empregado %s" + getName(), " has ID %d" + getIdEmployee());
+        return "ID:" + getIdEmployee() + " --- " + "Nome: " + getName() + " --- Tipo: " + getTypeEmployee() +
+                " --- ID Sind: " +getIdSyndicalist() + "\n";
+    }
+
+    public double setLiquidSalariedEmployee(double liquidSalaryEmp)
+    {
+        return this.liquidSalary = liquidSalaryEmp;
     }
 
     // Método abstrato que retornar o salário total do empregado de acordo com seu tipo
-    public abstract double salariedEmployee();
+    public abstract double setLiquidSalariedEmployee();
 }

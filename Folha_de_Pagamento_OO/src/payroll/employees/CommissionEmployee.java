@@ -8,34 +8,37 @@
  * @copyright Copyright (c) IC 2018
  *
  */
-
 package payroll.employees;
 
 import java.util.Scanner;
 
 public class CommissionEmployee extends Employee {
+
     private double salesResult;// Resultado das vendas
     private double commissionSale;// Comissão de vendas
-    private double salaryTotal;// Salário total do empregado
-
-
-    Scanner input = new Scanner(System.in);
 
     // Construtor
     public CommissionEmployee(int idEmployeeEmp)
     {
         super.setName();
         super.setAddress();
-        super.setIdEmployee(idEmployeeEmp);
-        super.setTypeEmployee("COMMISSION");
-        super.setTypeOfPayment("DEPOSIT");
-        super.setTypeOfAgenda("BI-WEEKLY");
+        super.setSalaryMonthly();
+        setIdEmployee(idEmployeeEmp);
+        super.setTypeEmployee("COMISSIONADO");
+        super.setTypeOfPayment("DEPOSITO");
+        super.setTypeOfAgenda("BISSEMANAL");
+        super.setDayWeeklyPay(4);// Dia da semana do pagamento
+        super.setDataPay(-1);// Data do pagamento
+        setCommissionSale();
+        this.isSyndicalist = false;
     }
 
     // Configurando o resultado das vendas em um período
-    public void setSalesResult(double salesResultEmp)
+    public void setSalesResult()
     {
-        System.out.println("Digite o resultado das vendas:");
+        double salesResultEmp;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Digite o resultado das vendas (Ex.: 200,00 é R$200,00):");
         salesResultEmp = input.nextDouble();
         if(salesResultEmp < 0)
         {
@@ -48,39 +51,36 @@ public class CommissionEmployee extends Employee {
     // Retorna o resultado das vendas
     public double getSalesResult()
     {
-        return salesResult;
+        return this.salesResult;
     }
 
     // Configura o percentual de comissão
-    public void setCommissionSale(double commissionSaleEmp)
+    public void setCommissionSale()
     {
-        System.out.println("Digite a comissão do empregado (Ex.: 20 é 20%):");
+        double commissionSaleEmp;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Digite a comissão do empregado (Ex.: 20,00 é 20%):");
         commissionSaleEmp = input.nextDouble();
         if(commissionSaleEmp < 0)
         {
-            System.out.println("ERROR! Comissãomenor que 0!");
+            System.out.println("ERROR! Comissão menor que 0!");
         }else{
-            this.commissionSale = commissionSaleEmp;
+            this.commissionSale = (commissionSaleEmp/100);
         }
     }
 
     // Retorna a comissão
     public double getCommissionSale()
     {
-        return commissionSale;
+        return this.commissionSale;
     }
 
     // Salário do Empregado comissionado
     @Override
-    public double salariedEmployee()
+    public double setLiquidSalariedEmployee()
     {
-        if(isSyndicalistEmployee() == 1)
-        {
-            salaryTotal = (getSalaryMonthly()/2 + getSalesResult()*getCommissionSale() - getUnionFee()/2 + getOthersFee()/2);
-        }else{
-            salaryTotal= (getSalaryMonthly()/2 + getSalesResult()*getCommissionSale());
-        }
-        return salaryTotal;
+        return this.liquidSalary += this.salaryMonthly/2 + getCommissionSale()*getSalesResult()
+                - getUnionFee()/2 - getOthersFee()/2;
     }
-
 }
+

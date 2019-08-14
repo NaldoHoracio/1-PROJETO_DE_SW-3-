@@ -10,32 +10,26 @@
  */
 package payroll.employees;
 
-import java.util.Scanner;
-
-public class SalariedEmployee extends Employee {
-    private double salaryTotal;// Salário total do empregado
-
+public class SalariedEmployee extends Employee{
     // Construtor
     public SalariedEmployee(int idEmployeeEmp)
     {
         super.setName();
         super.setAddress();
+        super.setSalaryMonthly();
         super.setIdEmployee(idEmployeeEmp);
-        super.setTypeEmployee("SALARIED");
-        super.setTypeOfPayment("DEPOSIT");
-        super.setTypeOfAgenda("MONTHLY");
+        super.setTypeEmployee("ASSALARIADO");
+        super.setTypeOfPayment("DEPOSITO");
+        super.setTypeOfAgenda("MENSAL");
+        super.setDayWeeklyPay(-1);// Dia da semana do pagamento
+        super.setDataPay(27);// Data do pagamento
+        this.isSyndicalist = false;
     }
-
 
     // Método para o salário do empregado
     @Override
-    public double salariedEmployee() {
-        if(isSyndicalistEmployee() == 1)
-        {
-            salaryTotal = getSalaryMonthly() - getUnionFee() - getOthersFee();
-        }else{
-            salaryTotal= getSalaryMonthly();
-        }
-        return salaryTotal;
+    public double setLiquidSalariedEmployee()
+    {
+        return this.liquidSalary += this.salaryMonthly - getUnionFee() - getOthersFee();
     }
 }

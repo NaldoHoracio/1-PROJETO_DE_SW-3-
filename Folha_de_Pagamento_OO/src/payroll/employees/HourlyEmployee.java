@@ -10,10 +10,11 @@
  */
 package payroll.employees;
 
-public class HourlyEmployee extends Employee {
+import java.util.Scanner;
+
+public class HourlyEmployee extends Employee{
     private double wageSalary;// Salário horário
-    private double hoursWorked;// Horas trabalhadas
-    private double partialSalary = 0;// Salario do dia (incluindo as horas extras)
+    private double salaryDay = 0;// Salario do dia (incluindo as horas extras)
 
     // Construtor
     public HourlyEmployee(int idEmployeeEmp)
@@ -21,14 +22,21 @@ public class HourlyEmployee extends Employee {
         super.setName();
         super.setAddress();
         super.setIdEmployee(idEmployeeEmp);
-        super.setTypeEmployee("HOURLY");
-        super.setTypeOfPayment("DEPOSIT");
-        super.setTypeOfAgenda("WEEKLY");
+        setWageSalary();
+        super.setTypeEmployee("HORISTA");
+        super.setTypeOfPayment("DEPOSITO");
+        super.setTypeOfAgenda("SEMANAL");
+        super.setDayWeeklyPay(4);// Dia da semana do pagamento
+        super.setDataPay(-1);// Data do pagamento
+        this.isSyndicalist = false;
     }
 
     // Configurando o salário do horista
-    public void setWageSalary(double wage)
+    public void setWageSalary()
     {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Digite o salário por hora (Exm.: 50,00):");
+        double wage = input.nextDouble();
         if(wage <= 0)
         {
             System.out.println("Salário inválido! Digite um valor maior que 0!");
@@ -37,57 +45,39 @@ public class HourlyEmployee extends Employee {
         }
     }
 
-    // Retornando o salário horário
     public double getWageSalary()
     {
-        return wageSalary;
+        return this.wageSalary;
     }
 
-    // Configurando o número de horas trabalhadas
-    public void setHoursWorked(double hours)
+    // Configurando salário do dia para 0
+    public void setSalaryDay()
     {
-
-        if(hours < 0.0 || hours > 24.00)
-        {
-            System.out.println("Hora inválida! Entre com um valor maior que 0 e menor que 24!");
-        }
-        this.hoursWorked = hours;
-    }
-
-    // Retornando o número de horas trabalhadas
-    public double getHoursWorked()
-    {
-        return hoursWorked;
+        double salaryDayEmp = 0.0;
+        this.salaryDay = salaryDayEmp;
     }
 
     // Calculando o salário do dia
-    public void setSalaryDay(double salaryDay)
+    public void setSalaryDay(double hoursWorked)
     {
-        if(getHoursWorked() <= 8)
+        if(hoursWorked <= 8)
         {
-            salaryDay = getHoursWorked()*getWageSalary();
+            this.salaryDay = hoursWorked * this.wageSalary;
         }else{
-            salaryDay = 8 * getWageSalary() + (8 - getHoursWorked()) * (1.5 * getWageSalary());
+            this.salaryDay = 8 * this.wageSalary + (hoursWorked - 8) * (1.5 * this.wageSalary);
         }
-        this.partialSalary += salaryDay;
+        System.out.println("Salário do dia: " + this.salaryDay);
     }
 
-    // Retornando o salário do dia
     public double getSalaryDay()
     {
-        return partialSalary;
-    }
-
-    // Submentendo cartão de ponto
-    public void submitCardPoint()
-    {
-        System.out.println("Submit the Card Point Today:");
-
+        return this.salaryDay;
     }
 
     // Configurando o salário do empregado
     @Override
-    public double salariedEmployee() {
-        return 0;
+    public double setLiquidSalariedEmployee()
+    {
+        return this.liquidSalary += this.salaryDay - getUnionFee()/4 - getOthersFee()/4;
     }
 }

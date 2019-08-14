@@ -10,20 +10,34 @@
  */
 package payroll.tools;
 
+import payroll.employees.HourlyEmployee;
+
 import java.util.Scanner;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 
 public class CardPoint {
-    private LocalDate hourIn;// Hora de entrada
-    private LocalDate hourOut;// Hora de saída
 
-    public void setHourIn(String hourInEmp)
+    public static void setCardPoint(HourlyEmployee empHourly)
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("Submeta o cartão de ponto com a data e a hora de entrada (dd/hh/yyyy hh:mm):");
-        hourInEmp = input.nextLine();
-        DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        this.hourIn = LocalDate.parse(hourInEmp, formatDate);
+        double hours, hoursIn, hoursOut;
+        System.out.println("Digite a hora de entrada (Formato de 24h - HH):");
+        hoursIn = input.nextInt();
+        System.out.println("Digite a hora de saida: (Formato de 24h - HH):");
+        hoursOut = input.nextInt();
+        if(hoursIn > hoursOut)
+        {
+            System.out.println("Hora de entrada maior que a hora de saída!");
+        }else{
+            hours = hoursOut - hoursIn;
+            if(hours > 24)
+            {
+                System.out.println("Impossível! O funcionário trabalhou mais que 24h no dia!");
+            }else{
+                System.out.println("Horas trabalhadas: " + hours);
+                empHourly.setSalaryDay(hours);
+                System.out.println("Cartão de ponto inserido com sucesso!");
+            }
+        }
     }
 }
