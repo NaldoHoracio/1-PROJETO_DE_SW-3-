@@ -8,7 +8,7 @@ Funções que o sistema deve ter:
 4. Lançar um resultado venda :heavy_check_mark:
 5. Lançar uma taxa de serviço :heavy_check_mark:
 6. Alterar detalhes de um empregado :heavy_check_mark:
-7. Rodar a folha de pagamento para hoje :x: 
+7. Rodar a folha de pagamento para hoje :heavy_check_mark: 
 8. Undo / Redo :x:
 9. Agenda de Pagamento :x:
 10. Criação de Novas Agendas de Pagamento :x:
