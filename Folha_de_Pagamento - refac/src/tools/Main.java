@@ -70,7 +70,8 @@ public class Main {
             }
             else if(op == 7)
             {
-                System.out.println("runPayrollToday(employees,input);");
+                System.out.println("Função RODAR PAYROLL HOJE:");
+                payrollSystem.runPayrollToday();
                 continueVar = true;
             }
             else if(op == 8)

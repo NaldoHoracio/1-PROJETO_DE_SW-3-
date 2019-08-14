@@ -31,11 +31,11 @@ public abstract class Employee {
     private int dataPay;// Data do pagamento do funcionário
     private int dayWeeklyPay;// Dia da semana do pagamento
     protected double salaryMonthly;// Salário mensal
-    protected double netSalary;// Salário líquido
+    protected double liquidSalary = 0;// Salário líquido
 
     // Dados referente ao sindicato
     protected boolean isSyndicalist = false;// Verifica se o empregado faz ou não parte do sindicato (1 - Sim | 0 - Não)
-    private int idSyndicalist;// Id do empregado no sindicato
+    private int idSyndicalist = -1;// Id do empregado no sindicato
     private double unionFee = 0;// Taxa do sindicato, caso o empregado faça parte
     private double othersFee = 0;// Outras taxas e deduções do salário
 
@@ -179,6 +179,7 @@ public abstract class Employee {
         {
             System.out.println("Situação atual do empregado junto ao sindicato: FILIADO");
             this.isSyndicalist = false;
+            this.idSyndicalist = -1;
             this.unionFee = 0;
             this.othersFee = 0;
             System.out.println("Situação do empregado junto ao sindicato alterada: NAO FILIADO");
@@ -267,6 +268,13 @@ public abstract class Employee {
                 " --- ID Sind: " +getIdSyndicalist() + "\n";
     }
 
+    public double setLiquidSalariedEmployee(double liquidSalaryEmp)
+    {
+        return this.liquidSalary = liquidSalaryEmp;
+    }
+
     // Método abstrato que retornar o salário total do empregado de acordo com seu tipo
-    public abstract double salariedEmployee();
+    public abstract double setLiquidSalariedEmployee();
+
+
 }

@@ -77,14 +77,9 @@ public class CommissionEmployee extends Employee {
 
     // Salário do Empregado comissionado
     @Override
-    public double salariedEmployee()
+    public double setLiquidSalariedEmployee()
     {
-        if(this.isSyndicalist == true)
-        {
-            this.netSalary = (getSalaryMonthly()/2 + getSalesResult()*getCommissionSale() - getUnionFee()/2 + getOthersFee()/2);
-        }else{
-            this.netSalary = (getSalaryMonthly()/2 + getSalesResult()*getCommissionSale());
-        }
-        return this.netSalary;
+        return this.liquidSalary += this.salaryMonthly/2 + getCommissionSale()*getSalesResult()
+                - getUnionFee()/2 - getOthersFee()/2;
     }
 }

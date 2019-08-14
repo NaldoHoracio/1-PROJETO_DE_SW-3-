@@ -222,11 +222,20 @@ public class Functions {
                     typeEmp = input.nextInt();
                     if(typeEmp == 2)
                     {
+                        employeeList.get(index).setSalaryMonthly();
                         employeeList.get(index).setTypeEmployee("COMISSIONADO");
+                        employeeList.get(index).setTypeOfAgenda("BISSEMANAL");
+                        employeeList.get(index).setDayWeeklyPay(4);// Dia da semana do pagamento
+                        employeeList.get(index).setDataPay(-1);// Data do pagamento
+                        ((CommissionEmployee )employeeList.get(index)).setSalesResult();
                     }
                     else if(typeEmp == 3)
                     {
+                        ((HourlyEmployee )employeeList.get(index)).setWageSalary();
                         employeeList.get(index).setTypeEmployee("HORISTA");
+                        employeeList.get(index).setTypeOfAgenda("SEMANAL");
+                        employeeList.get(index).setDayWeeklyPay(4);// Dia da semana do pagamento
+                        employeeList.get(index).setDataPay(-1);// Data do pagamento
                     }else{
                         System.out.println("Este tipo de emepregado não existe!");
                     }
@@ -237,11 +246,19 @@ public class Functions {
                     typeEmp = input.nextInt();
                     if(typeEmp == 1)
                     {
+                        employeeList.get(index).setSalaryMonthly();
                         employeeList.get(index).setTypeEmployee("ASSALARIADO");
+                        employeeList.get(index).setTypeOfAgenda("MENSAL");
+                        employeeList.get(index).setDayWeeklyPay(-1);// Dia da semana do pagamento
+                        employeeList.get(index).setDataPay(27);// Data do pagamento
                     }
                     else if(typeEmp == 3)
                     {
+                        ((HourlyEmployee )employeeList.get(index)).setWageSalary();
                         employeeList.get(index).setTypeEmployee("HORISTA");
+                        employeeList.get(index).setTypeOfAgenda("SEMANAL");
+                        employeeList.get(index).setDayWeeklyPay(4);// Dia da semana do pagamento
+                        employeeList.get(index).setDataPay(-1);// Data do pagamento
                     }else{
                         System.out.println("Este tipo de emepregado não existe!");
                     }
@@ -252,11 +269,20 @@ public class Functions {
                     typeEmp = input.nextInt();
                     if(typeEmp == 1)
                     {
+                        employeeList.get(index).setSalaryMonthly();
                         employeeList.get(index).setTypeEmployee("ASSALARIADO");
+                        employeeList.get(index).setTypeOfAgenda("MENSAL");
+                        employeeList.get(index).setDayWeeklyPay(-1);// Dia da semana do pagamento
+                        employeeList.get(index).setDataPay(27);// Data do pagamento
                     }
                     else if(typeEmp == 3)
                     {
+                        employeeList.get(index).setSalaryMonthly();
                         employeeList.get(index).setTypeEmployee("COMISSIONADO");
+                        employeeList.get(index).setTypeOfAgenda("BISSEMANAL");
+                        employeeList.get(index).setDayWeeklyPay(4);// Dia da semana do pagamento
+                        employeeList.get(index).setDataPay(-1);// Data do pagamento
+                        ((CommissionEmployee )employeeList.get(index)).setSalesResult();
                     }else{
                         System.out.println("Este tipo de emepregado não existe!");
                     }
@@ -355,5 +381,39 @@ public class Functions {
         }else{
             System.out.println("O empregado com ID " + idEmp + " não existe!");
         }
+    }
+
+    void runPayrollToday()
+    {
+        Scanner input = new Scanner(System.in);
+        int paymentDay;
+        System.out.println("Por favor, informe o ANO: ");
+        int year = input.nextInt();
+        System.out.println("Por favor, informe o MÊS: ");
+        int month = input.nextInt();
+        System.out.println("Por favor, informe a DIA DO MÊS:");
+        int dayMonth = input.nextInt();
+        System.out.println("Por favor, informe o DIA DA SEMANA: 1 - SEGUNDA | 2 - TERÇA | 3 - QUARTA | 4 - QUINTA | 5 - SEXTA");
+        int dayWeekly = input.nextInt();
+
+        boolean verifyLastDay = Calendar.lastDayMonth(year,month,dayMonth);
+
+        if(verifyLastDay == true)
+        {
+            paymentDay = 28;
+        }else{
+            paymentDay = dayMonth;
+            if(dayMonth > 23 && dayMonth < 29)
+            {
+                PaymentAgenda.payMonthly(employeeList, paymentDay - 1);
+            }
+        }
+        PaymentAgenda.payWeekly(employeeList, dayWeekly - 1);
+
+        if((dayMonth > 7 && dayMonth < 15) || (dayMonth > 21 && dayMonth < 29))
+        {
+            PaymentAgenda.payBiweekly(employeeList, dayWeekly - 1);
+        }
+
     }
 }

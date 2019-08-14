@@ -10,38 +10,61 @@
  */
 package tools;
 
+import employees.CommissionEmployee;
+import employees.Employee;
+import employees.HourlyEmployee;
+import employees.SalariedEmployee;
+
+import java.util.ArrayList;
+
 public class PaymentAgenda {
     private int[] dayWeekly = new int[5];// Agenda semanal - guarda o dia da semana
     private int[] dayBiweekly = new int[5];// Agenda bissemanal - guarda o dia da semana
     private int[] dayMonthly = new int[28];// Agenda mensal
 
-    // Setando o dia da semana quando a agenda é semanal
-    public void setDayWeekly(int[] dayWeekly) {
-        this.dayWeekly = dayWeekly;
+    public static void payWeekly(ArrayList<Employee> employees, int weeklyDay)
+    {
+        for (int i = 0; i < employees.size(); ++i)
+        {
+            if(employees.get(i).getTypeOfAgenda().equals("SEMANAL") && employees.get(i).getDayWeeklyPay() == weeklyDay)
+            {
+                System.out.println("ID: " + employees.get(i).getIdEmployee() +
+                        " | Nome: " + employees.get(i).getName() +
+                        " | Salário: R$ " + ((HourlyEmployee )employees.get(i)).setLiquidSalariedEmployee() +
+                        " | Método: " + employees.get(i).getTypeOfPayment() + "\n");
+                ((HourlyEmployee )employees.get(i)).setSalaryDay();
+                employees.get(i).setLiquidSalariedEmployee(0);
+            }
+        }
     }
 
-    // Pegando o dia da semana quando a agenda é semanal
-    public int[] getDayWeekly() {
-        return dayWeekly;
+    public static void payBiweekly(ArrayList<Employee> employees, int weeklyDay)
+    {
+        for (int i = 0; i < employees.size(); ++i)
+        {
+            if(employees.get(i).getTypeOfAgenda().equals("BISSEMANAL") && employees.get(i).getDayWeeklyPay() == weeklyDay)
+            {
+                System.out.println("ID: " + employees.get(i).getIdEmployee() +
+                        " | Nome: " + employees.get(i).getName() +
+                        " | Salário: R$ " +((CommissionEmployee)employees.get(i)).setLiquidSalariedEmployee() +
+                        " | Método: " + employees.get(i).getTypeOfPayment() + "\n");
+                employees.get(i).setLiquidSalariedEmployee(0);
+            }
+        }
     }
 
-    // Configurando o dia da semana quando a agenda é bissemanal
-    public void setDayBiweekly(int[] dayBiweekly) {
-        this.dayBiweekly = dayBiweekly;
-    }
-
-    // Retornando o dia da semana quanod a agenda é bissemanal
-    public int[] getDayBiweekly() {
-        return dayBiweekly;
-    }
-
-    // Configurando o dia da semana quando a agenda é mensal
-    public void setDayMonthly(int[] dayMonthly) {
-        this.dayMonthly = dayMonthly;
-    }
-
-    // Retornando o dia da semana quando a agenda é mensal
-    public int[] getDayMonthly() {
-        return dayMonthly;
+    public static void payMonthly(ArrayList<Employee> employees, int dataPay)
+    {
+        for (int i = 0; i < employees.size(); ++i)
+        {
+            if(employees.get(i).getTypeOfAgenda().equals("MENSAL") && employees.get(i).getDataPay() == dataPay)
+            {
+                System.out.println("ID: " + employees.get(i).getIdEmployee() +
+                        " | Nome: " + employees.get(i).getName() +
+                        " | Salário: R$ " +((SalariedEmployee)employees.get(i)).setLiquidSalariedEmployee() +
+                        " | Método: " + employees.get(i).getTypeOfPayment() + "\n");
+                employees.get(i).setLiquidSalariedEmployee(0);
+            }
+        }
     }
 }

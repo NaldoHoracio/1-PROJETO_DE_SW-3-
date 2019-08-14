@@ -1,5 +1,5 @@
 /**!
- * @className employees.CardPoint.java
+ * @className tools.CardPoint.java
  * @author Edvonaldo Horácio (edvonaldohs@ic.ufal.br)
  * @brief
  * @version 0.1

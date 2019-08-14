@@ -27,16 +27,10 @@ public class SalariedEmployee extends Employee{
         this.isSyndicalist = false;
     }
 
-
     // Método para o salário do empregado
     @Override
-    public double salariedEmployee() {
-        if(this.isSyndicalist == true)
-        {
-            this.netSalary = getSalaryMonthly() - getUnionFee() - getOthersFee();
-        }else{
-            this.netSalary = getSalaryMonthly();
-        }
-        return this.netSalary;
+    public double setLiquidSalariedEmployee()
+    {
+        return this.liquidSalary += this.salaryMonthly - getUnionFee() - getOthersFee();
     }
 }

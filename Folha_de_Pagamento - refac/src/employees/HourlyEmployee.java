@@ -15,7 +15,6 @@ import java.util.Scanner;
 
 public class HourlyEmployee extends Employee{
     private double wageSalary;// Salário horário
-    private double hoursWorked;// Horas trabalhadas
     private double salaryDay = 0;// Salario do dia (incluindo as horas extras)
 
     // Construtor
@@ -47,6 +46,13 @@ public class HourlyEmployee extends Employee{
         }
     }
 
+    // Configurando salário do dia para 0
+    public void setSalaryDay()
+    {
+        double salaryDayEmp = 0.0;
+        this.salaryDay = salaryDayEmp;
+    }
+
     // Calculando o salário do dia
     public void setSalaryDay(double hoursWorked)
     {
@@ -61,8 +67,8 @@ public class HourlyEmployee extends Employee{
 
     // Configurando o salário do empregado
     @Override
-    public double salariedEmployee() {
-        this.netSalary += this.salaryDay;
-        return 0;
+    public double setLiquidSalariedEmployee()
+    {
+        return this.liquidSalary += this.salaryDay - getUnionFee()/4 - getOthersFee()/4;
     }
 }
