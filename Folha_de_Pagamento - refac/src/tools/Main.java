@@ -112,7 +112,7 @@ public class Main {
 
     public static void menuPayroll()
     {
-        System.out.println("Bem-vindo ao Sistema de Folha de Pagamento EH!");
+        System.out.println("\nBem-vindo ao Sistema de Folha de Pagamento EH!\n");
         System.out.println("0 - Sair do Sistema de Folha de Pagamento.");
         System.out.println("1 - Adicionar empregado.");
         System.out.println("2 - Remover empregado.");

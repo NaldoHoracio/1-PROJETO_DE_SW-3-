@@ -15,7 +15,6 @@ import java.util.Scanner;
 
 public class HourlyEmployee extends Employee{
     private double wageSalary;// Salário horário
-    private double salaryDay = 0;// Salario do dia (incluindo as horas extras)
 
     // Construtor
     public HourlyEmployee(int idEmployeeEmp)
@@ -55,7 +54,7 @@ public class HourlyEmployee extends Employee{
     public void setSalaryDay()
     {
         double salaryDayEmp = 0.0;
-        this.salaryDay = salaryDayEmp;
+        this.grossSalary = salaryDayEmp;
     }
 
     // Calculando o salário do dia
@@ -63,22 +62,22 @@ public class HourlyEmployee extends Employee{
     {
         if(hoursWorked <= 8)
         {
-            this.salaryDay = hoursWorked * this.wageSalary;
+            this.grossSalary = hoursWorked * this.wageSalary;
         }else{
-            this.salaryDay = 8 * this.wageSalary + (hoursWorked - 8) * (1.5 * this.wageSalary);
+            this.grossSalary = 8 * this.wageSalary + (hoursWorked - 8) * (1.5 * this.wageSalary);
         }
-        System.out.println("Salário do dia: " + this.salaryDay);
+        System.out.println("Salário do dia: " + this.grossSalary);
     }
 
     public double getSalaryDay()
     {
-        return this.salaryDay;
+        return this.grossSalary;
     }
 
     // Configurando o salário do empregado
     @Override
     public double setLiquidSalariedEmployee()
     {
-        return this.liquidSalary += this.salaryDay - getUnionFee()/4 - getOthersFee()/4;
+        return this.liquidSalary += this.grossSalary - getUnionFee()/4 - getOthersFee()/4;
     }
 }

@@ -27,10 +27,16 @@ public class SalariedEmployee extends Employee{
         this.isSyndicalist = false;
     }
 
+    // Retornando o salário bruto
+    public double getGrossSalary()
+    {
+        return this.grossSalary = this.salaryMonthly;
+    }
+
     // Método para o salário do empregado
     @Override
     public double setLiquidSalariedEmployee()
     {
-        return this.liquidSalary += this.salaryMonthly - getUnionFee() - getOthersFee();
+        return this.liquidSalary += getGrossSalary() - getUnionFee() - getOthersFee();
     }
 }

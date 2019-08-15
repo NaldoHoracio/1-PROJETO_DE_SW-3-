@@ -31,6 +31,7 @@ public abstract class Employee {
     private int dataPay;// Data do pagamento do funcionário
     private int dayWeeklyPay;// Dia da semana do pagamento
     protected double salaryMonthly;// Salário mensal
+    protected double grossSalary = 0;// Salário bruto
     protected double liquidSalary = 0;// Salário líquido
 
     // Dados referente ao sindicato
