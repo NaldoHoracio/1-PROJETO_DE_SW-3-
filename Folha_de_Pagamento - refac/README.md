@@ -2,7 +2,7 @@
 
 ** Padrões de projetos utilizados **
 
-1. Padrão de projeto 1 e 2 - Templated e Extract :x:
+1. Padrão de projeto 1 e 2 - Templated e Extract :heavy_check_mark:
 	- Descrição:
 	A classe abstrata _Employee_ possui a variável _liquidSalary_ e a a classe concreta _HourlyEmployee_ possui a variável
 	_salaryDay_ que se referem ao salário líquido e ao salário do dia (após o cartão de ponto ser configurado), respectivamente.
