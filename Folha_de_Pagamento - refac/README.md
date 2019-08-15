@@ -10,7 +10,7 @@
 	classe concreta _SalariedEmployee_, no qual foi usada essa nova variável.
 
 
-2. Padrão de projeto 2 - Singleton :heavy_check_mark:
+2. Padrão de projeto 3 - Singleton :heavy_check_mark:
 	- Descrição:
 	A classe _Main_ chamava todas funcionalidades. Isso, além de expor um código, causa um grande acoplamento. Então, foi usado o 		padrão _Singleton_ e isso proporcionou o desacoplamento. Assim, caso novas funcionalidades sejam implementadas, a nova classe
 	_Menu_ irá apenas se preocupar em fornecer as novas opções do **_Menu_**.
