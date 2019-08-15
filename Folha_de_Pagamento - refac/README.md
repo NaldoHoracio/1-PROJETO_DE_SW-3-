@@ -1,6 +1,6 @@
 ## Projeto Folha de Pagamento Refatorado
 
-** Padrões de projetos utilizados **
+**Padrões de projetos utilizados**
 
 1. Padrão de projeto 1 e 2 - Templated e Extract :heavy_check_mark:
 	- Descrição:
