@@ -1,5 +1,8 @@
 package tools;
 
+import dataobjects.Researcher;
+
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -68,5 +71,29 @@ public class Main {
         System.out.println("6 - Consultar projeto de pesquisa!");
         System.out.println("7 - Relatório da produção acadêmcia (publicações e/ou orientações)!");
         System.out.println("8 - Alocar participante em um projeto de pesquisa!");
+    }
+
+    public static void printParticipants(ArrayList<Researcher> collaborator){
+        int i = 0;
+        for(Researcher print : collaborator){
+            System.out.println(i + " - " + print.getNome() + "\n");
+            i++;
+        }
+    }
+
+    public static void printTeacher(ArrayList<Researcher> collaborator) {
+        int i = 0;
+        for(Researcher collaboratorCont : collaborator){
+            if(collaboratorCont.isTeacher()) System.out.println(i + " - " + collaboratorCont.getNome() + "\n");
+            i++;
+        }
+    }
+
+    public static void printProjects(ArrayList<Project> projetos) {
+        int i = 0;
+        for(Project print : projetos){
+            System.out.println(i + " - " + print.getTitle() + "\n");
+            i++;
+        }
     }
 }
