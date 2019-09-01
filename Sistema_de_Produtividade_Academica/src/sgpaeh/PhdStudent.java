@@ -1,8 +1,6 @@
-package dataobjects;
+package sgpaeh;
 
-import java.util.Scanner;
-
-public class Phdstudent extends Researcher {
+public class PhdStudent extends Researcher {
     @Override
     public void addResearcher() {
         super.addResearcher();

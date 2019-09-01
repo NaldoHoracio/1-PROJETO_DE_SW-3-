@@ -1,11 +1,9 @@
-package tools;
-
-import dataobjects.Researcher;
-import dataobjects.Teacher;
+package sgpaeh;
 
 import java.util.ArrayList;
 
-public class Publication {
+public class Publication implements Comparable<Publication>
+{
     private String titleConference;
     private String conference;
     private int yearPublicationConference;
@@ -37,20 +35,8 @@ public class Publication {
         this.yearPublicationConference = yearPublicationConferenceIn;
     }
 
-    public String getAssociatedProject() {
-        return this.associatedProject;
-    }
-
     public void setAssociatedProject(String associatedProjectIn) {
         this.associatedProject = associatedProjectIn;
-    }
-
-    public void setLeader(Teacher leaderIn) {
-        this.leader = leaderIn;
-    }
-
-    public Teacher getLeader() {
-        return this.leader;
     }
 
     public void addAuthors(Researcher authorsIn) {
@@ -62,9 +48,10 @@ public class Publication {
     }
 
     @Override
-    public int compareTo(Publication publicacao) {
-        if (this.yearPublicationConference > publicacao.yearPublicationConference) return -1;
-        else if (this.yearPublicationConference < publicacao.yearPublicationConference) return 1;
+    public int compareTo(Publication publication) {
+        if (this.yearPublicationConference > publication.yearPublicationConference) return -1;
+        else if (this.yearPublicationConference < publication.yearPublicationConference) return 1;
         else return 0;
     }
 }
+

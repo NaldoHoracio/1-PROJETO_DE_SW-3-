@@ -1,8 +1,6 @@
-package dataobjects;
+package sgpaeh;
 
-import java.util.Scanner;
-
-public class Graduationstudent extends Researcher {
+public class MastersDegreeStudent extends Researcher {
     @Override
     public void addResearcher() {
         super.addResearcher();
@@ -15,6 +13,6 @@ public class Graduationstudent extends Researcher {
 
     @Override
     public boolean isMaxProjects() {
-        return (this.numberOfProjects() > 1);
+        return super.isMaxProjects();
     }
 }

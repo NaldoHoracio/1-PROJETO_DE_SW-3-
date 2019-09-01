@@ -1,12 +1,11 @@
-package dataobjects;
+package sgpaeh;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Teacher extends Researcher {
     private ArrayList<String> guidance = new ArrayList<>();
 
-    public void addGuidance (String guidanceIn) {
+    public void addGuidance(String guidanceIn) {
         this.guidance.add(guidanceIn);
     }
 
@@ -26,7 +25,8 @@ public class Teacher extends Researcher {
     }
 
     @Override
-    public void collaborador() {
+    public void collaborator()
+    {
         super.collaborator();
         System.out.println("Orientações do professor: ");
         for(String guiddanceCont: guidance) {
