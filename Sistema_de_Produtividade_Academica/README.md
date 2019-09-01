@@ -2,24 +2,18 @@
 
 ## SISTEMA DE GESTÃO DE PRODUTIVIDADE ACADÊMCIA
 
-### Autor
-
-Edvonaldo Horácio (edvonaldohs@ic.ufal.br)
-
 ### Descrição geral do projeto
 
 - [Clique aqui](https://docs.google.com/a/ic.ufal.br/viewer?a=v&pid=sites&srcid=aWMudWZhbC5icnxjb21wMjE1fGd4OjZmN2VhM2NhYmE5MTI5Yjc)
 
 ### Funcionalidades do projeto
 
-1. Funcionalidade 1
-2. Funcionalidade 2
-3. Funcionalidade 3
-4. Funcionalidade 4
-5. Funcionalidade 5
-6. Funcionalidade 6
-7. Funcionalidade 7
-8. Funcionalidade 8
-9. Funcionalidade 9
-10. Funcionalidade 10
+1. Cadastrar colaborador :heavy_check_mark:
+2. Adicionar novo projeto de pesquisa :heavy_check_mark:
+3. Alterar status de um projeto de pesquisa :heavy_check_mark:
+4. Incluir informações sobre a produção acadêmica :heavy_check_mark:
+5. Consultar informações de um colaborador :heavy_check_mark:
+6. Consultar informações de um projeto de pesquisa :heavy_check_mark:
+7. Relatório da produção acadêmcia (orientações e publicações) :heavy_check_mark:
+8. Alocar participante em um projeto de pesquisa :heavy_check_mark:
 
